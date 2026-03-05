@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stag.io · cosmic login</title>
+    <!-- Bootstrap Icons only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Satoshi font -->
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg-main: #f2f0f5;
+        --bg-panel: #ffffffd9;
+        --text-dark: #1f1b2c;
+        --text-soft: #4a4359;
+        --accent-1: #6c47ff;
+        --accent-2: #ff4d9a;
+        --accent-gradient: linear-gradient(145deg, #6c47ff, #ff4d9a);
+        --card-shadow:
+          0 30px 50px -25px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02);
+        --border-light: 1px solid rgba(255, 255, 255, 0.5);
+        --glow: 0 15px 30px -10px #6c47ff80;
+      }
+
+      body.dark {
+        --bg-main: #12101c;
+        --bg-panel: #1d1a2bd9;
+        --text-dark: #f0eaff;
+        --text-soft: #b8b0d0;
+        --accent-1: #9f8cff;
+        --accent-2: #ff9acb;
+        --card-shadow: 0 30px 50px -25px #010014, 0 0 0 1px #ffffff0d;
+        --border-light: 1px solid #ffffff12;
+      }
+
+      body {
+        background: var(--bg-main);
+        font-family: "Satoshi", sans-serif;
+        min-height: 100vh;
+        transition: background 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Cosmic background blobs */
+      .bg-blob {
+        position: fixed;
+        width: 600px;
+        height: 600px;
+        border-radius: 60% 40% 50% 50% / 45% 50% 50% 55%;
+        background: var(--accent-gradient);
+        opacity: 0.1;
+        filter: blur(60px);
+        z-index: 0;
+      }
+
+      .bg-blob-1 {
+        top: -200px;
+        left: -200px;
+        width: 700px;
+        height: 700px;
+      }
+
+      .bg-blob-2 {
+        bottom: -200px;
+        right: -200px;
+        width: 600px;
+        height: 600px;
+        background: linear-gradient(145deg, #ff4d9a, #6c47ff);
+      }
+
+      .login-container {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 480px;
+        padding: 2rem;
+      }
+
+      /* Logo cosmic */
+      .logo-cosmic {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 2rem;
+        text-decoration: none;
+      }
+
+      .logo-morph {
+        width: 58px;
+        height: 58px;
+        background: var(--accent-gradient);
+        border-radius: 35% 65% 70% 30% / 44% 30% 70% 56%;
+        box-shadow: var(--glow);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 900;
+        font-size: 1.8rem;
+      }
+
+      .logo-cosmic span {
+        font-weight: 900;
+        font-size: 2.3rem;
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -2px;
+      }
+
+      /* Theme toggle small */
+      .theme-orb-small {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: color-mix(in srgb, var(--accent-1) 15%, transparent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        border: var(--border-light);
+        transition: 0.2s;
+        backdrop-filter: blur(8px);
+        z-index: 20;
+      }
+
+      .theme-orb-small:hover {
+        background: var(--accent-1);
+        color: white;
+      }
+
+      /* Login card */
+      .login-card {
+        background: var(--bg-panel);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-radius: 70px;
+        padding: 2.5rem;
+        box-shadow: var(--card-shadow);
+        border: var(--border-light);
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .login-header h3 {
+        font-weight: 900;
+        font-size: 2.2rem;
+        letter-spacing: -1px;
+        margin-bottom: 0.5rem;
+      }
+
+      .login-header p {
+        color: var(--text-soft);
+        font-size: 1rem;
+      }
+
+      /* User type pills - blob style */
+      .user-type-pills {
+        display: flex;
+        gap: 0.8rem;
+        margin-bottom: 2rem;
+      }
+
+      .type-pill {
+        flex: 1;
+        padding: 1rem;
+        border: none;
+        background: color-mix(in srgb, var(--accent-1) 8%, transparent);
+        border-radius: 60px;
+        font-weight: 700;
+        color: var(--text-soft);
+        transition: 0.2s;
+        cursor: pointer;
+        border: var(--border-light);
+        backdrop-filter: blur(4px);
+      }
+
+      .type-pill.active {
+        background: var(--accent-gradient);
+        color: white;
+        box-shadow: var(--glow);
+      }
+
+      .type-pill i {
+        margin-right: 0.5rem;
+      }
+
+      /* Form elements - blob style */
+      .form-label {
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .input-blob-group {
+        display: flex;
+        align-items: center;
+        background: color-mix(in srgb, var(--accent-1) 5%, transparent);
+        border-radius: 60px;
+        border: var(--border-light);
+        overflow: hidden;
+        transition: 0.2s;
+      }
+
+      .input-blob-group:focus-within {
+        box-shadow: var(--glow);
+      }
+
+      .input-icon {
+        padding: 0 1rem;
+        color: var(--accent-1);
+        font-size: 1.2rem;
+      }
+
+      .input-blob {
+        flex: 1;
+        background: transparent;
+        border: none;
+        padding: 1rem 1rem 1rem 0;
+        color: var(--text-dark);
+        font-family: "Satoshi", sans-serif;
+        font-size: 1rem;
+      }
+
+      .input-blob:focus {
+        outline: none;
+      }
+
+      .input-blob::placeholder {
+        color: var(--text-soft);
+        opacity: 0.5;
+      }
+
+      .toggle-password-blob {
+        background: transparent;
+        border: none;
+        padding: 0 1.2rem;
+        color: var(--text-soft);
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+
+      .toggle-password-blob:hover {
+        color: var(--accent-1);
+      }
+
+      /* Remember and forgot */
+      .login-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1.5rem 0;
+      }
+
+      .checkbox-blob {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+      }
+
+      .checkbox-blob input {
+        display: none;
+      }
+
+      .check-custom {
+        width: 22px;
+        height: 22px;
+        border-radius: 8px;
+        background: color-mix(in srgb, var(--accent-1) 10%, transparent);
+        border: var(--border-light);
+        display: inline-block;
+        position: relative;
+      }
+
+      .checkbox-blob input:checked + .check-custom::after {
+        content: "✓";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--accent-2);
+        font-weight: bold;
+      }
+
+      .forgot-link {
+        color: var(--accent-1);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .forgot-link:hover {
+        text-decoration: underline;
+      }
+
+      /* Submit button */
+      .btn-login {
+        width: 100%;
+        padding: 1.2rem;
+        border: none;
+        background: var(--accent-gradient);
+        color: white;
+        font-weight: 700;
+        font-size: 1.1rem;
+        border-radius: 60px;
+        cursor: pointer;
+        transition: 0.2s;
+        box-shadow: var(--glow);
+      }
+
+      .btn-login:hover {
+        transform: scale(1.02);
+      }
+
+      /* Footer links */
+      .login-footer {
+        text-align: center;
+        margin-top: 1.5rem;
+      }
+
+      .login-footer a {
+        color: var(--accent-1);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .login-footer a:hover {
+        text-decoration: underline;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 1rem;
+        color: var(--text-soft);
+        text-decoration: none;
+      }
+
+      .back-link i {
+        margin-right: 0.5rem;
+      }
+
+      .back-link:hover {
+        color: var(--accent-1);
+      }
+
+      /* Responsive */
+      @media (max-width: 500px) {
+        .login-container {
+          padding: 1rem;
+        }
+
+        .login-card {
+          padding: 1.8rem;
+          border-radius: 50px;
+        }
+
+        .user-type-pills {
+          flex-direction: column;
+        }
+
+        .theme-orb-small {
+          top: 1rem;
+          right: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background blobs -->
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+
+    <!-- Theme toggle -->
+    <div class="theme-orb-small" id="themeToggle">
+      <i class="bi bi-sun-fill"></i>
+    </div>
+
+    <div class="login-container">
+      <!-- Logo -->
+      <a href="/" class="logo-cosmic">
+        <div class="logo-morph">S</div>
+        <span>stag.io</span>
+      </a>
+
+      <!-- Login card -->
+      <div class="login-card">
+        <div class="login-header">
+          <h3>welcome back</h3>
+          <p>sign in to continue to your account</p>
+        </div>
+
+        <!-- User type pills -->
+        <div class="user-type-pills">
+          <button id="studentBtn" class="type-pill active">
+            <i class="bi bi-person"></i> Student
+          </button>
+          <button id="companyBtn" class="type-pill">
+            <i class="bi bi-building"></i> Company
+          </button>
+          <button id="adminBtn" class="type-pill">
+            <i class="bi bi-shield"></i> Admin
+          </button>
+        </div>
+
+        <!-- Form -->
+        <form id="loginForm">
+          <!-- Email -->
+          <div class="mb-4">
+            <label class="form-label">Email Address</label>
+            <div class="input-blob-group">
+              <span class="input-icon"><i class="bi bi-envelope"></i></span>
+              <input
+                type="email"
+                id="emailInput"
+                class="input-blob"
+                placeholder="your.email@university.dz"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-4">
+            <label class="form-label">Password</label>
+            <div class="input-blob-group">
+              <span class="input-icon"><i class="bi bi-lock"></i></span>
+              <input
+                type="password"
+                id="passwordInput"
+                class="input-blob"
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                class="toggle-password-blob"
+                id="togglePassword"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember & Forgot -->
+          <div class="login-options">
+            <label class="checkbox-blob">
+              <input type="checkbox" />
+              <span class="check-custom"></span>
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn-login">Sign In</button>
+        </form>
+
+        <!-- Register link -->
+        <div class="login-footer">
+          Don't have an account? <a href="/register">Create Account</a>
+          <div>
+            <a href="/" class="back-link">
+              <i class="bi bi-arrow-left"></i> Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // User type switching
+      let userType = "student";
+
+      const emailInput = document.getElementById("emailInput");
+      const studentBtn = document.getElementById("studentBtn");
+      const companyBtn = document.getElementById("companyBtn");
+      const adminBtn = document.getElementById("adminBtn");
+      const passwordInput = document.getElementById("passwordInput");
+      const togglePassword = document.getElementById("togglePassword");
+
+      function setUser(type) {
+        userType = type;
+
+        // Reset all buttons
+        studentBtn.classList.remove("active");
+        companyBtn.classList.remove("active");
+        adminBtn.classList.remove("active");
+
+        if (type === "student") {
+          studentBtn.classList.add("active");
+          emailInput.placeholder = "your.email@university.dz";
+        } else if (type === "company") {
+          companyBtn.classList.add("active");
+          emailInput.placeholder = "your.email@company.com";
+        } else {
+          adminBtn.classList.add("active");
+          emailInput.placeholder = "admin@platform.com";
+        }
+      }
+
+      studentBtn.onclick = () => setUser("student");
+      companyBtn.onclick = () => setUser("company");
+      adminBtn.onclick = () => setUser("admin");
+
+      // Toggle password visibility
+      togglePassword.onclick = () => {
+        const type = passwordInput.type === "password" ? "text" : "password";
+        passwordInput.type = type;
+        togglePassword.innerHTML =
+          type === "password"
+            ? '<i class="bi bi-eye"></i>'
+            : '<i class="bi bi-eye-slash"></i>';
+      };
+
+      // Form submission with redirects
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          if (userType === "student") {
+            window.location.href = "/student-dashboard";
+          } else if (userType === "company") {
+            window.location.href = "/company-dashboard";
+          } else {
+            window.location.href = "/admin-dashboard";
+          }
+        });
+
+      // Theme toggle
+      const toggleBtn = document.getElementById("themeToggle");
+      const body = document.body;
+      const icon = toggleBtn.querySelector("i");
+
+      function setTheme(theme) {
+        if (theme === "dark") {
+          body.classList.add("dark");
+          icon.className = "bi bi-moon-fill";
+        } else {
+          body.classList.remove("dark");
+          icon.className = "bi bi-sun-fill";
+        }
+        localStorage.setItem("stagio-theme", theme);
+      }
+
+      const saved = localStorage.getItem("stagio-theme") || "light";
+      setTheme(saved);
+
+      toggleBtn.addEventListener("click", () => {
+        const isDark = body.classList.contains("dark");
+        setTheme(isDark ? "light" : "dark");
+      });
+    </script>
+  </body>
+</html>
