@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stag.io · company dashboard · radical redesign</title>
+  <!-- Bootstrap Icons only, no layout -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Font: Satoshi (same as previous redesigns) -->
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-main: #f2f0f5;
+      --bg-panel: #ffffffd9;
+      --text-dark: #1f1b2c;
+      --text-soft: #4a4359;
+      --accent-1: #6c47ff;
+      --accent-2: #ff4d9a;
+      --accent-gradient: linear-gradient(145deg, #6c47ff, #ff4d9a);
+      --card-shadow: 0 30px 50px -25px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02);
+      --border-light: 1px solid rgba(255,255,255,0.5);
+      --glow: 0 15px 30px -10px #6c47ff80;
+    }
+
+    body.dark {
+      --bg-main: #12101c;
+      --bg-panel: #1d1a2bd9;
+      --text-dark: #f0eaff;
+      --text-soft: #b8b0d0;
+      --accent-1: #9f8cff;
+      --accent-2: #ff9acb;
+      --card-shadow: 0 30px 50px -25px #010014, 0 0 0 1px #ffffff0d;
+      --border-light: 1px solid #ffffff12;
+    }
+
+    body {
+      background: var(--bg-main);
+      color: var(--text-dark);
+      font-family: 'Satoshi', sans-serif;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.2s;
+      padding: 2rem;
+    }
+
+    .universe {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* cosmic bar (identical to previous redesigns) */
+    .cosmic-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-panel);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 120px;
+      padding: 1.2rem 2.2rem;
+      box-shadow: var(--card-shadow);
+      border: var(--border-light);
+    }
+
+    .logo-fusion {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-morph {
+      width: 58px;
+      height: 58px;
+      background: var(--accent-gradient);
+      border-radius: 35% 65% 70% 30% / 44% 30% 70% 56%;
+      box-shadow: var(--glow);
+    }
+
+    .logo-fusion span {
+      font-weight: 900;
+      font-size: 2.3rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .theme-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--accent-1) 15%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border: var(--border-light);
+      transition: 0.2s;
+    }
+
+    .theme-circle:hover {
+      background: var(--accent-1);
+      color: white;
+    }
+
+    .notification-orb {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--accent-2) 15%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .orb-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ff3b5c;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 800;
+      width: 22px;
+      height: 22px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--bg-main);
+    }
+
+    /* profile blob (company specific) */
+    .profile-blob {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-panel);
+      padding: 8px 20px 8px 8px;
+      border-radius: 60px;
+      border: var(--border-light);
+    }
+
+    .blob-avatar {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-gradient);
+      border-radius: 45% 55% 64% 36% / 48% 41% 59% 52%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+    }
+
+    /* navigation fresh (horizontal pills) */
+    .navigation-fresh {
+      display: flex;
+      gap: 1rem;
+      background: var(--bg-panel);
+      backdrop-filter: blur(12px);
+      border-radius: 100px;
+      padding: 0.8rem;
+      box-shadow: var(--card-shadow);
+      border: var(--border-light);
+      width: fit-content;
+      flex-wrap: wrap;
+    }
+
+    .nav-pill {
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-soft);
+      transition: 0.15s;
+      text-decoration: none;
+    }
+
+    .nav-pill.active {
+      background: var(--accent-gradient);
+      color: white;
+      box-shadow: var(--glow);
+    }
+
+    .nav-pill i {
+      font-size: 1.3rem;
+    }
+
+    .badge-new {
+      background: #ff3b5c;
+      color: white;
+      padding: 0.2rem 0.8rem;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      margin-left: 8px;
+    }
+
+    /* warp welcome (company greeting) */
+    .warp-welcome {
+      background: var(--accent-gradient);
+      border-radius: 70px;
+      padding: 2.5rem 3rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 35px 60px -15px #6c47ff;
+    }
+
+    .warp-welcome h1 {
+      font-weight: 900;
+      font-size: 2.8rem;
+      letter-spacing: -1px;
+    }
+
+    .btn-radical-light {
+      background: white;
+      border: none;
+      padding: 0.9rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 700;
+      color: #1f1b2c;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: 0.1s;
+    }
+
+    body.dark .btn-radical-light {
+      background: #2b263f;
+      color: #eae3ff;
+    }
+
+    /* stats circles (like previous stats, but now company data) */
+    .stats-circles {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .circle-card {
+      background: var(--bg-panel);
+      backdrop-filter: blur(8px);
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      border: var(--border-light);
+      transition: 0.2s;
+      padding: 1rem;
+    }
+
+    .circle-card:hover {
+      transform: scale(1.02);
+      background: color-mix(in srgb, var(--accent-1) 8%, var(--bg-panel));
+      border-color: var(--accent-1);
+    }
+
+    .circle-stat {
+      font-size: 3.8rem;
+      font-weight: 900;
+      line-height: 1;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .circle-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin: 0.4rem 0 0.2rem;
+    }
+
+    .circle-trend {
+      font-size: 0.9rem;
+      background: #22b06f20;
+      color: #22b06f;
+      padding: 0.2rem 1rem;
+      border-radius: 60px;
+      display: inline-block;
+    }
+
+    .circle-warning {
+      background: #ffb34720;
+      color: #d47b00;
+    }
+
+    /* nebula cards for sections */
+    .nebula-card {
+      background: var(--bg-panel);
+      backdrop-filter: blur(12px);
+      border-radius: 60px;
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      border: var(--border-light);
+      height: 100%;
+    }
+
+    .card-header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-header-flex h5 {
+      font-weight: 800;
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    /* offer / application items */
+    .list-item-fancy {
+      background: color-mix(in srgb, var(--bg-main) 50%, transparent);
+      border-radius: 50px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1rem;
+      border: var(--border-light);
+      transition: 0.1s;
+    }
+
+    .list-item-fancy:last-child {
+      margin-bottom: 0;
+    }
+
+    .item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .badge-active {
+      background: #22b06f20;
+      color: #22b06f;
+      padding: 0.3rem 1.2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .skill-tag {
+      background: color-mix(in srgb, var(--accent-1) 12%, transparent);
+      color: var(--accent-1);
+      padding: 0.2rem 1rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-right: 0.5rem;
+      margin-top: 0.3rem;
+    }
+
+    .applicant-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 45% 55% 64% 36% / 48% 41% 59% 52%;
+      background: var(--accent-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .applicant-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .footer-quantum {
+      margin-top: 2rem;
+      text-align: center;
+      opacity: 0.4;
+      font-size: 0.8rem;
+    }
+
+    /* grid for two columns */
+    .dashboard-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="universe">
+
+  <!-- cosmic header (with company context) -->
+  <div class="cosmic-bar">
+    <div class="logo-fusion">
+      <div class="logo-morph"></div>
+      <span>stag.io</span>
+    </div>
+    <div class="header-actions">
+      <div class="theme-circle" id="themeToggleCosmic">
+        <i class="bi bi-sun-fill"></i>
+      </div>
+      <div class="notification-orb">
+        <i class="bi bi-bell"></i>
+        <span class="orb-badge">3</span>
+      </div>
+      <div class="profile-blob">
+        <div class="blob-avatar">TC</div>
+        <div>
+          <div class="fw-bold">TechCorp Algeria</div>
+          <small style="color: var(--text-soft);">Company</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- navigation pills (company specific) -->
+  <div class="navigation-fresh">
+    <a href="CompanyDashboard.html" class="nav-pill active"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
+    <a href="CompanyProfile.html" class="nav-pill"><i class="bi bi-building"></i> Company Profile</a>
+    <a href="CompanyManageOffers.html" class="nav-pill"><i class="bi bi-briefcase"></i> Manage Offers <span class="badge-new">8</span></a>
+    <a href="CompanyApplicatins.html" class="nav-pill"><i class="bi bi-people"></i> Applications <span class="badge-new">15</span></a>
+    <a href="#" class="nav-pill"><i class="bi bi-box-arrow-right"></i> Logout</a>
+  </div>
+
+  <!-- warp welcome (company greeting) -->
+  <div class="warp-welcome">
+    <div>
+      <h1>welcome back, TechCorp! </h1>
+      <p style="opacity:0.9;">manage offers & review candidates · 8 active offers</p>
+    </div>
+    <a href="CompanyCreateNewOffer.html" class="btn-radical-light"><i class="bi bi-plus-circle"></i> Post New Offer</a>
+  </div>
+
+  <!-- stats circles (exactly as previous redesign style, with company data) -->
+  <div class="stats-circles">
+    <div class="circle-card">
+      <span class="circle-stat">8</span>
+      <span class="circle-label">active offers</span>
+      <span class="circle-trend">+2 this month</span>
+    </div>
+    <div class="circle-card">
+      <span class="circle-stat">42</span>
+      <span class="circle-label">total applications</span>
+      <span class="circle-trend">+12 new</span>
+    </div>
+    <div class="circle-card">
+      <span class="circle-stat">15</span>
+      <span class="circle-label">in review</span>
+      <span class="circle-trend circle-warning">+5 pending</span>
+    </div>
+    <div class="circle-card">
+      <span class="circle-stat">156</span>
+      <span class="circle-label">profile views</span>
+      <span class="circle-trend">▲24%</span>
+    </div>
+  </div>
+
+  <!-- two column grid for recent offers & applications -->
+  <div class="dashboard-grid-2">
+    <!-- Recent Offers -->
+    <div class="nebula-card">
+      <div class="card-header-flex">
+        <h5><i class="bi bi-briefcase" style="margin-right: 8px;"></i> Recent offers</h5>
+        <a href="#" class="btn-radical-light" style="padding: 0.5rem 1.5rem;">View All</a>
+      </div>
+
+      <!-- offer items -->
+      <div class="list-item-fancy">
+        <div class="item-row">
+          <strong style="font-size: 1.1rem;">Full Stack Developer</strong>
+          <span class="badge-active">Active</span>
+        </div>
+        <div style="color: var(--text-soft); margin: 0.4rem 0;">12 applicants • 45 views</div>
+        <small style="color: var(--text-soft);">Posted 2 days ago</small>
+      </div>
+
+      <div class="list-item-fancy">
+        <div class="item-row">
+          <strong style="font-size: 1.1rem;">Frontend Developer</strong>
+          <span class="badge-active">Active</span>
+        </div>
+        <div style="color: var(--text-soft); margin: 0.4rem 0;">8 applicants • 32 views</div>
+        <small style="color: var(--text-soft);">Posted 1 week ago</small>
+      </div>
+
+      <div class="list-item-fancy">
+        <div class="item-row">
+          <strong style="font-size: 1.1rem;">Mobile Developer</strong>
+          <span class="badge-active">Active</span>
+        </div>
+        <div style="color: var(--text-soft); margin: 0.4rem 0;">15 applicants • 67 views</div>
+        <small style="color: var(--text-soft);">Posted 3 days ago</small>
+      </div>
+    </div>
+
+    <!-- Recent Applications -->
+    <div class="nebula-card">
+      <div class="card-header-flex">
+        <h5><i class="bi bi-people" style="margin-right: 8px;"></i> Recent applications</h5>
+        <a href="#" class="btn-radical-light" style="padding: 0.5rem 1.5rem;">View All</a>
+      </div>
+
+      <!-- application items with avatar -->
+      <div class="list-item-fancy">
+        <div class="applicant-row">
+          <div class="applicant-avatar">AB</div>
+          <div style="flex:1;">
+            <div class="item-row" style="margin-bottom: 0.2rem;">
+              <strong>Ahmed Benali</strong>
+              <small style="color: var(--text-soft);">2h ago</small>
+            </div>
+            <div style="color: var(--text-soft); font-size:0.9rem;">Full Stack Developer</div>
+            <div style="margin-top: 0.3rem;">
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Node.js</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-item-fancy">
+        <div class="applicant-row">
+          <div class="applicant-avatar">FM</div>
+          <div style="flex:1;">
+            <div class="item-row" style="margin-bottom: 0.2rem;">
+              <strong>Fatima Mansouri</strong>
+              <small style="color: var(--text-soft);">5h ago</small>
+            </div>
+            <div style="color: var(--text-soft); font-size:0.9rem;">Frontend Developer</div>
+            <div style="margin-top: 0.3rem;">
+              <span class="skill-tag">Vue.js</span>
+              <span class="skill-tag">CSS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-item-fancy">
+        <div class="applicant-row">
+          <div class="applicant-avatar">YK</div>
+          <div style="flex:1;">
+            <div class="item-row" style="margin-bottom: 0.2rem;">
+              <strong>Yacine Kaddour</strong>
+              <small style="color: var(--text-soft);">1d ago</small>
+            </div>
+            <div style="color: var(--text-soft); font-size:0.9rem;">Mobile Developer</div>
+            <div style="margin-top: 0.3rem;">
+              <span class="skill-tag">React Native</span>
+              <span class="skill-tag">Flutter</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div class="footer-quantum">Stag.io · company dashboard · radical redesign, same core data</div>
+</div>
+
+<!-- theme toggle script (identical to previous) -->
+<script>
+  (function() {
+    const toggleBtn = document.getElementById('themeToggleCosmic');
+    const body = document.body;
+    const icon = toggleBtn.querySelector('i');
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        body.classList.add('dark');
+        icon.className = 'bi bi-moon-fill';
+      } else {
+        body.classList.remove('dark');
+        icon.className = 'bi bi-sun-fill';
+      }
+      localStorage.setItem('stagio-theme', theme);
+    }
+
+    const saved = localStorage.getItem('stagio-theme') || 'light';
+    setTheme(saved);
+
+    toggleBtn.addEventListener('click', () => {
+      const isDark = body.classList.contains('dark');
+      setTheme(isDark ? 'light' : 'dark');
+    });
+  })();
+</script>
+
+<!-- small fixes -->
+<style>
+  .text-white-50 {
+    color: rgba(255,255,255,0.7);
+  }
+  body.dark .text-white-50 {
+    color: rgba(255,255,255,0.5);
+  }
+  a {
+    text-decoration: none;
+  }
+</style>
+
+</body>
+</html>
