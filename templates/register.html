@@ -15,6 +15,7 @@
       rel="stylesheet"
     />
     <style>
+      /* TOUS TES STYLES ICI (garde tout) */
       * {
         margin: 0;
         padding: 0;
@@ -441,8 +442,8 @@
     </div>
 
     <div class="register-container">
-      <!-- Logo -->
-      <a href="/" class="logo-cosmic">
+      <!-- Logo - CHANGER ICI: lien vers home -->
+      <a href="{{ url_for('home') }}" class="logo-cosmic">
         <div class="logo-morph">S</div>
         <span>stag.io</span>
       </a>
@@ -464,8 +465,20 @@
           </button>
         </div>
 
-        <!-- Form -->
-        <form id="registerForm">
+        <!-- Form - CHANGER ICI: method POST et action vers register -->
+        <form
+          id="registerForm"
+          method="POST"
+          action="{{ url_for('register') }}"
+        >
+          <!-- AJOUTER ICI: champ caché pour le type d'utilisateur -->
+          <input
+            type="hidden"
+            id="userTypeInput"
+            name="userType"
+            value="student"
+          />
+
           <!-- ================= STUDENT FORM ================= -->
           <div id="studentForm">
             <div class="form-grid">
@@ -475,6 +488,7 @@
                   <span class="input-icon"><i class="bi bi-person"></i></span>
                   <input
                     type="text"
+                    name="firstName"
                     class="input-blob"
                     placeholder="Ahmed"
                     required
@@ -488,6 +502,7 @@
                   <span class="input-icon"><i class="bi bi-person"></i></span>
                   <input
                     type="text"
+                    name="lastName"
                     class="input-blob"
                     placeholder="Benali"
                     required
@@ -502,6 +517,7 @@
                 <span class="input-icon"><i class="bi bi-envelope"></i></span>
                 <input
                   type="email"
+                  name="email"
                   class="input-blob"
                   placeholder="your.email@university.dz"
                   required
@@ -516,6 +532,7 @@
                 <span class="input-icon"><i class="bi bi-phone"></i></span>
                 <input
                   type="tel"
+                  name="phone"
                   class="input-blob"
                   placeholder="0555 12 34 56"
                   required
@@ -531,6 +548,7 @@
                   <input
                     type="password"
                     id="studentPassword"
+                    name="password"
                     class="input-blob"
                     required
                   />
@@ -544,7 +562,12 @@
                 <label class="form-label">Confirm Password</label>
                 <div class="input-blob-group">
                   <span class="input-icon"><i class="bi bi-lock"></i></span>
-                  <input type="password" class="input-blob" required />
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    class="input-blob"
+                    required
+                  />
                 </div>
               </div>
             </div>
@@ -558,6 +581,7 @@
                 <span class="input-icon"><i class="bi bi-building"></i></span>
                 <input
                   type="text"
+                  name="companyName"
                   class="input-blob"
                   placeholder="Your Company Name"
                 />
@@ -570,6 +594,7 @@
                 <span class="input-icon"><i class="bi bi-envelope"></i></span>
                 <input
                   type="email"
+                  name="email"
                   class="input-blob"
                   placeholder="contact@company.com"
                 />
@@ -582,6 +607,7 @@
                 <span class="input-icon"><i class="bi bi-phone"></i></span>
                 <input
                   type="tel"
+                  name="phone"
                   class="input-blob"
                   placeholder="021 12 34 56"
                 />
@@ -592,7 +618,7 @@
               <label class="form-label">Wilaya</label>
               <div class="input-blob-group">
                 <span class="input-icon"><i class="bi bi-geo-alt"></i></span>
-                <select class="input-blob">
+                <select name="wilaya" class="input-blob">
                   <option>Select Wilaya</option>
                   <option>Alger</option>
                   <option>Oran</option>
@@ -606,6 +632,7 @@
             <div class="form-group">
               <label class="form-label">Address</label>
               <textarea
+                name="address"
                 class="input-blob"
                 rows="3"
                 placeholder="Your full address..."
@@ -620,6 +647,7 @@
                   <input
                     type="password"
                     id="companyPassword"
+                    name="password"
                     class="input-blob"
                   />
                   <button type="button" class="toggle-password-blob togglePass">
@@ -632,7 +660,11 @@
                 <label class="form-label">Confirm Password</label>
                 <div class="input-blob-group">
                   <span class="input-icon"><i class="bi bi-lock"></i></span>
-                  <input type="password" class="input-blob" />
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    class="input-blob"
+                  />
                 </div>
               </div>
             </div>
@@ -640,7 +672,7 @@
 
           <!-- Terms -->
           <label class="checkbox-blob">
-            <input type="checkbox" required />
+            <input type="checkbox" name="terms" required />
             <span class="check-custom"></span>
             <span>I agree to Terms & Privacy Policy</span>
           </label>
@@ -653,9 +685,9 @@
 
         <!-- Footer -->
         <div class="register-footer">
-          Already have an account? <a href="/login">Sign In</a>
+          Already have an account? <a href="{{ url_for('login') }}">Sign In</a>
           <div>
-            <a href="/" class="back-link">
+            <a href="{{ url_for('home') }}" class="back-link">
               <i class="bi bi-arrow-left"></i> Back to Home
             </a>
           </div>
@@ -666,44 +698,55 @@
     <script>
       let userType = "student";
 
+      // Récupérer le type depuis l'URL si présent
+      const urlParams = new URLSearchParams(window.location.search);
+      const typeFromUrl = urlParams.get("type");
+
       const studentBtn = document.getElementById("studentBtn");
       const companyBtn = document.getElementById("companyBtn");
       const studentForm = document.getElementById("studentForm");
       const companyForm = document.getElementById("companyForm");
       const submitBtn = document.getElementById("submitBtn");
+      const userTypeInput = document.getElementById("userTypeInput");
 
-      // Switch between student and company
-      studentBtn.onclick = () => {
-        userType = "student";
+      // Si type dans URL, activer le bon bouton
+      if (typeFromUrl === "company") {
+        setUser("company");
+      }
 
-        // Toggle forms
-        studentForm.classList.remove("hidden");
-        companyForm.classList.add("hidden");
+      function setUser(type) {
+        userType = type;
+        userTypeInput.value = type;
 
-        // Toggle button styles
-        studentBtn.classList.add("active");
-        companyBtn.classList.remove("active");
+        if (type === "student") {
+          // Toggle forms
+          studentForm.classList.remove("hidden");
+          companyForm.classList.add("hidden");
 
-        // Update submit button
-        submitBtn.className = "btn-register student";
-        submitBtn.textContent = "Create Account";
-      };
+          // Toggle button styles
+          studentBtn.classList.add("active");
+          companyBtn.classList.remove("active");
 
-      companyBtn.onclick = () => {
-        userType = "company";
+          // Update submit button
+          submitBtn.className = "btn-register student";
+          submitBtn.textContent = "Create Account";
+        } else {
+          // Toggle forms
+          companyForm.classList.remove("hidden");
+          studentForm.classList.add("hidden");
 
-        // Toggle forms
-        companyForm.classList.remove("hidden");
-        studentForm.classList.add("hidden");
+          // Toggle button styles
+          companyBtn.classList.add("active");
+          studentBtn.classList.remove("active");
 
-        // Toggle button styles
-        companyBtn.classList.add("active");
-        studentBtn.classList.remove("active");
+          // Update submit button
+          submitBtn.className = "btn-register company";
+          submitBtn.textContent = "Register Company";
+        }
+      }
 
-        // Update submit button
-        submitBtn.className = "btn-register company";
-        submitBtn.textContent = "Register Company";
-      };
+      studentBtn.onclick = () => setUser("student");
+      companyBtn.onclick = () => setUser("company");
 
       // Toggle password visibility
       document.querySelectorAll(".togglePass").forEach((btn) => {
@@ -717,18 +760,11 @@
         };
       });
 
-      // Form submission with redirects
-      document
-        .getElementById("registerForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          if (userType === "student") {
-            window.location.href = "/student-dashboard";
-          } else {
-            window.location.href = "/company-dashboard";
-          }
-        });
+      // NE PAS BLOQUER LA SOUMISSION - laisser Flask gérer
+      // document.getElementById("registerForm").addEventListener("submit", function (e) {
+      //   e.preventDefault(); // ← SUPPRIME ÇA
+      //   ... ne pas mettre ...
+      // });
 
       // Theme toggle
       const toggleBtn = document.getElementById("themeToggle");

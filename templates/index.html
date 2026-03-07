@@ -15,6 +15,7 @@
       rel="stylesheet"
     />
     <style>
+      /* TOUS TES STYLES ICI (garde tout ce que tu as) */
       * {
         margin: 0;
         padding: 0;
@@ -615,8 +616,11 @@
             <i class="bi bi-sun-fill"></i>
           </div>
           <div class="auth-blob">
-            <a href="/login" class="btn-blob">Sign In</a>
-            <a href="/register" class="btn-blob btn-blob-primary"
+            <!-- CHANGER ICI: utiliser url_for pour les liens -->
+            <a href="{{ url_for('login') }}" class="btn-blob">Sign In</a>
+            <a
+              href="{{ url_for('register') }}"
+              class="btn-blob btn-blob-primary"
               >Get Started</a
             >
           </div>
@@ -644,8 +648,13 @@
           </p>
 
           <div class="hero-cta">
-            <a href="/register" class="btn-hero">Start Your Journey</a>
-            <a href="/login" class="btn-hero btn-hero-outline">I'm a Company</a>
+            <!-- CHANGER ICI: utiliser url_for -->
+            <a href="{{ url_for('register') }}" class="btn-hero"
+              >Start Your Journey</a
+            >
+            <a href="{{ url_for('login') }}" class="btn-hero btn-hero-outline"
+              >I'm a Company</a
+            >
           </div>
 
           <div class="hero-avatars">
@@ -796,7 +805,8 @@
             <li><i class="bi bi-check-lg"></i> track application status</li>
             <li><i class="bi bi-check-lg"></i> easy document access</li>
           </ul>
-          <a href="/register?type=student" class="btn-card"
+          <!-- CHANGER ICI: lien vers register avec paramètre -->
+          <a href="{{ url_for('register') }}?type=student" class="btn-card"
             >register as student</a
           >
         </div>
@@ -813,7 +823,10 @@
             <li><i class="bi bi-check-lg"></i> accept/reject applications</li>
             <li><i class="bi bi-check-lg"></i> streamlined hiring process</li>
           </ul>
-          <a href="/register?type=company" class="btn-card btn-card-outline"
+          <!-- CHANGER ICI: lien vers register avec paramètre -->
+          <a
+            href="{{ url_for('register') }}?type=company"
+            class="btn-card btn-card-outline"
             >register as company</a
           >
         </div>
@@ -830,7 +843,10 @@
             <li><i class="bi bi-check-lg"></i> track student progress</li>
             <li><i class="bi bi-check-lg"></i> view detailed statistics</li>
           </ul>
-          <a href="/login?type=admin" class="btn-card">admin access</a>
+          <!-- CHANGER ICI: lien vers login avec paramètre -->
+          <a href="{{ url_for('login') }}?type=admin" class="btn-card"
+            >admin access</a
+          >
         </div>
       </div>
 
@@ -838,7 +854,8 @@
       <div class="cta-vortex">
         <h2>ready to transform your internship experience?</h2>
         <p>Join hundreds of students and companies already using Stag.io</p>
-        <a href="/register" class="btn-cta">get started free</a>
+        <!-- CHANGER ICI: lien vers register -->
+        <a href="{{ url_for('register') }}" class="btn-cta">get started free</a>
       </div>
 
       <!-- Footer -->

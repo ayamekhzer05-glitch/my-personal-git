@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stag.io · validation · radical redesign</title>
+    <!-- Bootstrap Icons only, no layout -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Font: Satoshi (modern, same as previous redesign) -->
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg-main: #f2f0f5;
+        --bg-panel: #ffffffd9;
+        --text-dark: #1f1b2c;
+        --text-soft: #4a4359;
+        --accent-1: #6c47ff;
+        --accent-2: #ff4d9a;
+        --accent-gradient: linear-gradient(145deg, #6c47ff, #ff4d9a);
+        --card-shadow:
+          0 30px 50px -25px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02);
+        --border-light: 1px solid rgba(255, 255, 255, 0.5);
+        --glow: 0 15px 30px -10px #6c47ff80;
+      }
+
+      body.dark {
+        --bg-main: #12101c;
+        --bg-panel: #1d1a2bd9;
+        --text-dark: #f0eaff;
+        --text-soft: #b8b0d0;
+        --accent-1: #9f8cff;
+        --accent-2: #ff9acb;
+        --card-shadow: 0 30px 50px -25px #010014, 0 0 0 1px #ffffff0d;
+        --border-light: 1px solid #ffffff12;
+      }
+
+      body {
+        background: var(--bg-main);
+        color: var(--text-dark);
+        font-family: "Satoshi", sans-serif;
+        min-height: 100vh;
+        transition:
+          background 0.3s,
+          color 0.2s;
+        padding: 2rem;
+      }
+
+      /* container */
+      .universe {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      /* cosmic bar (identical to previous redesign) */
+      .cosmic-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--bg-panel);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-radius: 120px;
+        padding: 1.2rem 2.2rem;
+        box-shadow: var(--card-shadow);
+        border: var(--border-light);
+      }
+
+      .logo-fusion {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-morph {
+        width: 58px;
+        height: 58px;
+        background: var(--accent-gradient);
+        border-radius: 35% 65% 70% 30% / 44% 30% 70% 56%;
+        box-shadow: var(--glow);
+      }
+
+      .logo-fusion span {
+        font-weight: 900;
+        font-size: 2.3rem;
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -2px;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .theme-circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: color-mix(in srgb, var(--accent-1) 15%, transparent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        border: var(--border-light);
+        transition: 0.2s;
+      }
+
+      .theme-circle:hover {
+        background: var(--accent-1);
+        color: white;
+      }
+
+      .notification-orb {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: color-mix(in srgb, var(--accent-2) 15%, transparent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+      }
+
+      .orb-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ff3b5c;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 800;
+        width: 22px;
+        height: 22px;
+        border-radius: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid var(--bg-main);
+      }
+
+      .profile-blob {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg-panel);
+        padding: 8px 20px 8px 8px;
+        border-radius: 60px;
+        border: var(--border-light);
+      }
+
+      .blob-avatar {
+        width: 44px;
+        height: 44px;
+        background: var(--accent-gradient);
+        border-radius: 45% 55% 64% 36% / 48% 41% 59% 52%;
+      }
+
+      /* navigation fresh (horizontal pills) */
+      .navigation-fresh {
+        display: flex;
+        gap: 1rem;
+        background: var(--bg-panel);
+        backdrop-filter: blur(12px);
+        border-radius: 100px;
+        padding: 0.8rem;
+        box-shadow: var(--card-shadow);
+        border: var(--border-light);
+        width: fit-content;
+        flex-wrap: wrap;
+      }
+
+      .nav-pill {
+        padding: 1rem 2rem;
+        border-radius: 60px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-soft);
+        transition: 0.15s;
+        text-decoration: none;
+      }
+
+      .nav-pill.active {
+        background: var(--accent-gradient);
+        color: white;
+        box-shadow: var(--glow);
+      }
+
+      .nav-pill i {
+        font-size: 1.3rem;
+      }
+
+      .badge-new {
+        background: #ff3b5c;
+        color: white;
+        padding: 0.2rem 0.8rem;
+        border-radius: 60px;
+        font-size: 0.7rem;
+        margin-left: 8px;
+      }
+
+      /* warp welcome (branded header) */
+      .warp-welcome {
+        background: var(--accent-gradient);
+        border-radius: 70px;
+        padding: 2.5rem 3rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 35px 60px -15px #6c47ff;
+      }
+
+      .warp-welcome h1 {
+        font-weight: 900;
+        font-size: 2.8rem;
+        letter-spacing: -1px;
+      }
+
+      /* main validation grid */
+      .validation-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.8rem;
+      }
+
+      /* validation card (nebula style) */
+      .nebula-card {
+        background: var(--bg-panel);
+        backdrop-filter: blur(12px);
+        border-radius: 60px;
+        padding: 2rem;
+        box-shadow: var(--card-shadow);
+        border: var(--border-light);
+      }
+
+      .validation-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+      }
+
+      .badge-pending {
+        background: #ffb34720;
+        color: #d47b00;
+        padding: 0.3rem 1.5rem;
+        border-radius: 60px;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .row-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .info-block small {
+        color: var(--text-soft);
+        font-size: 0.8rem;
+        letter-spacing: 0.3px;
+      }
+
+      .info-block .fw-bold {
+        font-size: 1.1rem;
+        margin-top: 0.2rem;
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .action-bar {
+        display: flex;
+        gap: 1rem;
+        border-top: 2px dotted var(--border-light);
+        padding-top: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .btn-radical {
+        background: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 100px;
+        font-weight: 700;
+        color: #1f1b2c;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: 0.1s;
+        border: var(--border-light);
+      }
+
+      .btn-radical-success {
+        background: #22b06f20;
+        color: #22b06f;
+        border: 1px solid #22b06f40;
+      }
+      .btn-radical-danger {
+        background: #ff3b5c20;
+        color: #d42d4a;
+        border: 1px solid #ff3b5c40;
+      }
+
+      body.dark .btn-radical {
+        background: #28243b;
+        color: #eae3ff;
+      }
+
+      /* document alert (nebula style but with accent) */
+      .doc-alert {
+        background: color-mix(in srgb, var(--accent-1) 12%, var(--bg-panel));
+        backdrop-filter: blur(12px);
+        border-radius: 60px;
+        padding: 1.8rem 2rem;
+        border: var(--border-light);
+        display: flex;
+        align-items: center;
+        gap: 1.8rem;
+        margin-top: 2rem;
+      }
+
+      .doc-alert i {
+        font-size: 2.8rem;
+        color: var(--accent-1);
+      }
+
+      .footer-quantum {
+        margin-top: 2rem;
+        text-align: center;
+        opacity: 0.4;
+        font-size: 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="universe">
+      <!-- cosmic header (exactly as previous redesign) -->
+      <div class="cosmic-bar">
+        <div class="logo-fusion">
+          <div class="logo-morph"></div>
+          <span>stag.io</span>
+        </div>
+        <div class="header-actions">
+          <div class="theme-circle" id="themeToggleCosmic">
+            <i class="bi bi-sun-fill"></i>
+          </div>
+          <div class="notification-orb">
+            <i class="bi bi-bell"></i>
+            <span class="orb-badge">1</span>
+          </div>
+          <div class="profile-blob">
+            <div class="blob-avatar"></div>
+            <span class="fw-bold">admin</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- navigation pills (active = validation) -->
+      <div class="navigation-fresh">
+        <a href="{{ url_for('admin_dashboard') }}" class="nav-pill"
+          ><i class="bi bi-grid-1x2-fill"></i> Dashboard</a
+        >
+        <a href="{{ url_for('admin_validation') }}" class="nav-pill active"
+          ><i class="bi bi-check2-all"></i> Validation
+          <span class="badge-new">12</span></a
+        >
+        <a href="{{ url_for('admin_statistics') }}" class="nav-pill"
+          ><i class="bi bi-bar-chart-steps"></i> Statistics</a
+        >
+        <a href="{{ url_for('logout') }}" class="nav-pill"
+          ><i class="bi bi-box-arrow-right"></i> Logout</a
+        >
+      </div>
+
+      <!-- warp welcome (validation context) -->
+      <div class="warp-welcome">
+        <div>
+          <h1>validation queue</h1>
+          <p style="opacity: 0.9">
+            review & validate internship placements · 12 pending
+          </p>
+        </div>
+        <i class="bi bi-file-check fs-1"></i>
+      </div>
+
+      <!-- main validation area (grid of cards) -->
+      <div class="validation-grid">
+        <!-- Validation Card 1 (identical data, new radical design) -->
+        <div class="nebula-card">
+          <div class="validation-header">
+            <div>
+              <h3 class="fw-bold" style="font-size: 1.8rem">
+                Full Stack Developer
+              </h3>
+              <span class="badge-pending">Pending</span>
+            </div>
+            <small class="text-muted" style="color: var(--text-soft)"
+              >Submitted: 2024-02-15</small
+            >
+          </div>
+
+          <!-- row info student / company -->
+          <div class="row-info">
+            <div class="info-block">
+              <small>Student</small>
+              <div class="fw-bold">Ahmed Benali</div>
+              <div style="color: var(--text-soft)">
+                ahmed.benali@university.dz
+              </div>
+            </div>
+            <div class="info-block">
+              <small>Company</small>
+              <div class="fw-bold">TechCorp Algeria</div>
+              <div style="color: var(--text-soft)">contact@techcorp.dz</div>
+            </div>
+          </div>
+
+          <!-- meta: duration, start, position -->
+          <div class="meta-grid">
+            <div>
+              <small class="text-muted">Duration</small>
+              <div class="fw-bold">6 months</div>
+            </div>
+            <div>
+              <small class="text-muted">Start Date</small>
+              <div class="fw-bold">2024-03-01</div>
+            </div>
+            <div>
+              <small class="text-muted">Position</small>
+              <div class="fw-bold">Full Stack Developer</div>
+            </div>
+          </div>
+
+          <!-- action buttons (radical style) -->
+          <div class="action-bar">
+            <button class="btn-radical">
+              <i class="bi bi-eye"></i> View Details
+            </button>
+            <button
+              class="btn-radical btn-radical-success"
+              onclick="
+                alert('Internship 1 validated! Document generation initiated.')
+              "
+            >
+              <i class="bi bi-check-circle"></i> Validate & Generate
+            </button>
+            <button
+              class="btn-radical btn-radical-danger"
+              onclick="alert('Internship 1 rejected.')"
+            >
+              <i class="bi bi-x-circle"></i> Reject
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Document info alert (redesigned) -->
+      <div class="doc-alert">
+        <i class="bi bi-file-earmark-check"></i>
+        <div style="flex: 1">
+          <h5 class="fw-bold" style="font-size: 1.5rem">
+            Automatic Document Generation
+          </h5>
+          <p style="color: var(--text-soft); margin-bottom: 1rem">
+            When you validate an internship, the system automatically generates
+            the official "Convention de Stage" with all required information
+            pre-filled.
+          </p>
+          <button
+            class="btn-radical"
+            style="background: white"
+            onclick="alert('Preview template')"
+          >
+            <i class="bi bi-download"></i> Preview Document Template
+          </button>
+        </div>
+      </div>
+
+      <!-- subtle footer -->
+      <div class="footer-quantum">
+        Stag.io · validation · radical redesign, same core flow
+      </div>
+    </div>
+
+    <!-- theme toggle script (identical to previous) -->
+    <script>
+      (function () {
+        const toggleBtn = document.getElementById("themeToggleCosmic");
+        const body = document.body;
+        const icon = toggleBtn.querySelector("i");
+
+        function setTheme(theme) {
+          if (theme === "dark") {
+            body.classList.add("dark");
+            icon.className = "bi bi-moon-fill";
+          } else {
+            body.classList.remove("dark");
+            icon.className = "bi bi-sun-fill";
+          }
+          localStorage.setItem("stagio-theme", theme);
+        }
+
+        const saved = localStorage.getItem("stagio-theme") || "light";
+        setTheme(saved);
+
+        toggleBtn.addEventListener("click", () => {
+          const isDark = body.classList.contains("dark");
+          setTheme(isDark ? "light" : "dark");
+        });
+      })();
+    </script>
+
+    <!-- small style alignment -->
+    <style>
+      .text-muted {
+        color: var(--text-soft) !important;
+      }
+      .btn-radical-success:hover {
+        background: #22b06f40;
+      }
+      .btn-radical-danger:hover {
+        background: #ff3b5c40;
+      }
+      body.dark .btn-radical-success {
+        color: #6cdb9f;
+      }
+      body.dark .btn-radical-danger {
+        color: #ff8a9f;
+      }
+    </style>
+  </body>
+</html>

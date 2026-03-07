@@ -15,6 +15,7 @@
       rel="stylesheet"
     />
     <style>
+      /* TOUS TES STYLES ICI (garde tout) */
       * {
         margin: 0;
         padding: 0;
@@ -402,8 +403,8 @@
     </div>
 
     <div class="login-container">
-      <!-- Logo -->
-      <a href="/" class="logo-cosmic">
+      <!-- Logo - CHANGER ICI: lien vers home -->
+      <a href="{{ url_for('home') }}" class="logo-cosmic">
         <div class="logo-morph">S</div>
         <span>stag.io</span>
       </a>
@@ -428,8 +429,16 @@
           </button>
         </div>
 
-        <!-- Form -->
-        <form id="loginForm">
+        <!-- Form - CHANGER ICI: method POST et action vers login -->
+        <form id="loginForm" method="POST" action="{{ url_for('login') }}">
+          <!-- AJOUTER ICI: champ caché pour le type d'utilisateur -->
+          <input
+            type="hidden"
+            id="userTypeInput"
+            name="userType"
+            value="student"
+          />
+
           <!-- Email -->
           <div class="mb-4">
             <label class="form-label">Email Address</label>
@@ -438,6 +447,7 @@
               <input
                 type="email"
                 id="emailInput"
+                name="email"
                 class="input-blob"
                 placeholder="your.email@university.dz"
                 required
@@ -453,6 +463,7 @@
               <input
                 type="password"
                 id="passwordInput"
+                name="password"
                 class="input-blob"
                 placeholder="••••••••"
                 required
@@ -470,7 +481,7 @@
           <!-- Remember & Forgot -->
           <div class="login-options">
             <label class="checkbox-blob">
-              <input type="checkbox" />
+              <input type="checkbox" name="remember" />
               <span class="check-custom"></span>
               <span>Remember me</span>
             </label>
@@ -483,9 +494,10 @@
 
         <!-- Register link -->
         <div class="login-footer">
-          Don't have an account? <a href="/register">Create Account</a>
+          Don't have an account?
+          <a href="{{ url_for('register') }}">Create Account</a>
           <div>
-            <a href="/" class="back-link">
+            <a href="{{ url_for('home') }}" class="back-link">
               <i class="bi bi-arrow-left"></i> Back to Home
             </a>
           </div>
@@ -497,15 +509,26 @@
       // User type switching
       let userType = "student";
 
+      // Récupérer le type depuis l'URL si présent
+      const urlParams = new URLSearchParams(window.location.search);
+      const typeFromUrl = urlParams.get("type");
+
       const emailInput = document.getElementById("emailInput");
       const studentBtn = document.getElementById("studentBtn");
       const companyBtn = document.getElementById("companyBtn");
       const adminBtn = document.getElementById("adminBtn");
       const passwordInput = document.getElementById("passwordInput");
       const togglePassword = document.getElementById("togglePassword");
+      const userTypeInput = document.getElementById("userTypeInput");
+
+      // Si type dans URL, activer le bon bouton
+      if (typeFromUrl === "admin") {
+        setUser("admin");
+      }
 
       function setUser(type) {
         userType = type;
+        userTypeInput.value = type; // Met à jour le champ caché
 
         // Reset all buttons
         studentBtn.classList.remove("active");
@@ -538,20 +561,11 @@
             : '<i class="bi bi-eye-slash"></i>';
       };
 
-      // Form submission with redirects
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          if (userType === "student") {
-            window.location.href = "/student-dashboard";
-          } else if (userType === "company") {
-            window.location.href = "/company-dashboard";
-          } else {
-            window.location.href = "/admin-dashboard";
-          }
-        });
+      // NE PAS BLOQUER LA SOUMISSION - laisser Flask gérer
+      // document.getElementById("loginForm").addEventListener("submit", function (e) {
+      //   e.preventDefault(); // ← SUPPRIME ÇA
+      //   ... ne pas mettre ...
+      // });
 
       // Theme toggle
       const toggleBtn = document.getElementById("themeToggle");
