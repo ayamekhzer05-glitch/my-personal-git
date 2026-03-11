@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stag.io · radical platform</title>
-    <!-- Bootstrap Icons only (no layout) -->
+    <title>Stag.io · platform</title>
+    <!-- Bootstrap Icons -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <!-- Satoshi font -->
+    <!-- Inter font -->
     <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* TOUS TES STYLES ICI (garde tout ce que tu as) */
+      /* RESET & BASE */
       * {
         margin: 0;
         padding: 0;
@@ -23,881 +23,1078 @@
       }
 
       :root {
-        --bg-main: #f2f0f5;
-        --bg-panel: #ffffffd9;
-        --text-dark: #1f1b2c;
-        --text-soft: #4a4359;
-        --accent-1: #6c47ff;
-        --accent-2: #ff4d9a;
-        --accent-gradient: linear-gradient(145deg, #6c47ff, #ff4d9a);
-        --card-shadow:
-          0 30px 50px -25px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02);
-        --border-light: 1px solid rgba(255, 255, 255, 0.5);
-        --glow: 0 15px 30px -10px #6c47ff80;
+        --bg: #faf5ff;
+        --surface: #ffffff;
+        --surface-2: #f3e8ff;
+        --text-primary: #2e1065;
+        --text-secondary: #6b21a8;
+        --text-tertiary: #9d4edd;
+        --primary: #c026d3;
+        --primary-dark: #a21caf;
+        --primary-light: #f0abfc;
+        --secondary: #d946ef;
+        --accent: #8b5cf6;
+        --gradient-1: linear-gradient(135deg, #c026d3, #8b5cf6);
+        --gradient-2: linear-gradient(135deg, #d946ef, #c026d3);
+        --gradient-3: linear-gradient(135deg, #8b5cf6, #d946ef);
+        --border: 1px solid #e9d5ff;
+        --shadow-sm: 0 1px 3px rgba(147, 51, 234, 0.1);
+        --shadow-md: 0 4px 6px -1px rgba(147, 51, 234, 0.2);
+        --shadow-lg: 0 10px 15px -3px rgba(147, 51, 234, 0.3);
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 24px;
+        --radius-xxl: 32px;
       }
 
       body.dark {
-        --bg-main: #12101c;
-        --bg-panel: #1d1a2bd9;
-        --text-dark: #f0eaff;
-        --text-soft: #b8b0d0;
-        --accent-1: #9f8cff;
-        --accent-2: #ff9acb;
-        --card-shadow: 0 30px 50px -25px #010014, 0 0 0 1px #ffffff0d;
-        --border-light: 1px solid #ffffff12;
+        --bg: #1e0b36;
+        --surface: #2d1b4e;
+        --surface-2: #3b2468;
+        --text-primary: #f3e8ff;
+        --text-secondary: #e9d5ff;
+        --text-tertiary: #d8b4fe;
+        --primary: #e879f9;
+        --primary-dark: #d946ef;
+        --primary-light: #f5d0fe;
+        --border: 1px solid #581c87;
       }
 
       body {
-        background: var(--bg-main);
-        color: var(--text-dark);
-        font-family: "Satoshi", sans-serif;
+        background: var(--bg);
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
         min-height: 100vh;
-        transition:
-          background 0.3s,
-          color 0.2s;
+        transition: all 0.3s ease;
+        line-height: 1.6;
+        position: relative;
+        overflow-x: hidden;
       }
 
-      .universe {
-        max-width: 1400px;
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+          radial-gradient(
+            circle at 20% 50%,
+            rgba(192, 38, 211, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(139, 92, 246, 0.05) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .container {
+        max-width: 1280px;
         margin: 0 auto;
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
+        padding: 1.5rem;
+        position: relative;
+        z-index: 1;
       }
 
-      /* Cosmic header */
-      .cosmic-bar {
+      /* SHAKE ANIMATION */
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+          transform: translateX(-2px) rotate(-1deg);
+        }
+        20%,
+        40%,
+        60%,
+        80% {
+          transform: translateX(2px) rotate(1deg);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .logo:hover .logo-text {
+        animation: shake 0.5s ease-in-out;
+        display: inline-block;
+      }
+
+      .text-gradient {
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: inline-block;
+      }
+
+      /* HEADER */
+      .header-modern {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: var(--bg-panel);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        border-radius: 120px;
-        padding: 1.2rem 2.2rem;
-        box-shadow: var(--card-shadow);
-        border: var(--border-light);
+        padding: 1rem 0;
+        margin-bottom: 4rem;
+        animation: float 3s ease-in-out infinite;
       }
 
-      .logo-fusion {
+      .logo {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 0.75rem;
+        cursor: pointer;
       }
 
-      .logo-morph {
-        width: 58px;
-        height: 58px;
-        background: var(--accent-gradient);
-        border-radius: 35% 65% 70% 30% / 44% 30% 70% 56%;
-        box-shadow: var(--glow);
+      .logo-mark {
+        width: 40px;
+        height: 40px;
+        background: var(--gradient-1);
+        border-radius: 12px;
+        position: relative;
+        transform: rotate(10deg);
+        transition: transform 0.3s;
+        box-shadow: var(--shadow-md);
       }
 
-      .logo-fusion span {
-        font-weight: 900;
-        font-size: 2.3rem;
-        background: var(--accent-gradient);
+      .logo:hover .logo-mark {
+        transform: rotate(15deg) scale(1.1);
+      }
+
+      .logo-mark::after {
+        content: "";
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 15px;
+        height: 15px;
+        background: var(--secondary);
+        border-radius: 50%;
+        opacity: 0.7;
+      }
+
+      .logo-text {
+        font-weight: 800;
+        font-size: 2rem;
+        letter-spacing: -0.02em;
+        background: var(--gradient-1);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        letter-spacing: -2px;
+        background-clip: text;
+        transition: all 0.3s;
+      }
+
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.2s;
+        position: relative;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gradient-1);
+        transition: width 0.3s;
+      }
+
+      .nav-link:hover {
+        color: var(--primary);
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
       }
 
       .header-actions {
         display: flex;
         align-items: center;
-        gap: 30px;
+        gap: 1rem;
       }
 
-      .theme-circle {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: color-mix(in srgb, var(--accent-1) 15%, transparent);
+      .theme-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 45px;
+        background: var(--surface);
+        border: var(--border);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
         cursor: pointer;
-        border: var(--border-light);
-        transition: 0.2s;
+        color: var(--primary);
+        transition: all 0.3s;
       }
 
-      .theme-circle:hover {
-        background: var(--accent-1);
+      .theme-btn:hover {
+        background: var(--gradient-1);
         color: white;
+        transform: rotate(180deg);
       }
 
-      .auth-blob {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .btn-blob {
-        padding: 0.9rem 2.2rem;
-        border-radius: 60px;
-        font-weight: 700;
-        background: var(--bg-panel);
-        border: var(--border-light);
-        color: var(--text-dark);
+      /* BUTTONS WITH NEW DESIGN */
+      .btn {
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.95rem;
         text-decoration: none;
-        transition: 0.2s;
-        backdrop-filter: blur(8px);
-      }
-
-      .btn-blob-primary {
-        background: var(--accent-gradient);
-        color: white;
-        box-shadow: var(--glow);
-      }
-
-      .btn-blob:hover {
-        transform: scale(1.02);
-      }
-
-      /* Hero section - warp style */
-      .warp-hero {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-        align-items: center;
-        background: var(--accent-gradient);
-        border-radius: 70px;
-        padding: 3.5rem;
-        color: white;
-        box-shadow: 0 35px 60px -15px #6c47ff;
-        margin-top: 1rem;
-      }
-
-      .badge-orb {
-        display: inline-block;
-        padding: 0.6rem 1.5rem;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(8px);
-        border-radius: 60px;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-      }
-
-      .warp-hero h1 {
-        font-weight: 900;
-        font-size: 3.2rem;
-        line-height: 1.1;
-        letter-spacing: -2px;
-        margin-bottom: 1.5rem;
-      }
-
-      .hero-cta {
-        display: flex;
-        gap: 1rem;
-        margin: 2rem 0;
-      }
-
-      .btn-hero {
-        padding: 1.2rem 2.5rem;
-        border-radius: 60px;
-        font-weight: 700;
-        text-decoration: none;
-        background: white;
-        color: #1f1b2c;
+        transition: all 0.3s;
         border: none;
-        font-size: 1.1rem;
-      }
-
-      .btn-hero-outline {
-        background: transparent;
-        border: 2px solid white;
-        color: white;
-      }
-
-      .hero-avatars {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        gap: 1rem;
-      }
-
-      .avatar-group {
-        display: flex;
-        align-items: center;
-      }
-
-      .avatar-circle {
-        width: 45px;
-        height: 45px;
-        border-radius: 45% 55% 50% 50% / 50% 45% 55% 50%;
-        margin-left: -10px;
-        border: 3px solid white;
-        background: var(--accent-gradient);
-      }
-
-      .avatar-circle:nth-child(1) {
-        background: linear-gradient(145deg, #60a5fa, #3b82f6);
-      }
-      .avatar-circle:nth-child(2) {
-        background: linear-gradient(145deg, #c084fc, #9333ea);
-      }
-      .avatar-circle:nth-child(3) {
-        background: linear-gradient(145deg, #f472b6, #ec4899);
-      }
-      .avatar-circle:nth-child(4) {
-        background: linear-gradient(145deg, #34d399, #10b981);
-      }
-
-      .hero-image-morph {
-        width: 100%;
-        height: 450px;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
-        border-radius: 45% 55% 65% 35% / 40% 50% 50% 60%;
+        gap: 0.5rem;
+        position: relative;
         overflow: hidden;
-        border: 2px solid rgba(255, 255, 255, 0.3);
+        z-index: 1;
       }
 
-      .hero-image-morph img {
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        mix-blend-mode: overlay;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+        z-index: -1;
       }
 
-      /* Stats nebula */
-      .stats-nebula {
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary {
+        background: var(--gradient-1);
+        color: white;
+        box-shadow: 0 4px 15px rgba(192, 38, 211, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(192, 38, 211, 0.4);
+      }
+
+      .btn-secondary {
+        background: var(--gradient-2);
+        color: white;
+        box-shadow: 0 4px 15px rgba(217, 70, 239, 0.3);
+      }
+
+      .btn-secondary:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(217, 70, 239, 0.4);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-outline::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: var(--gradient-1);
+        transition: width 0.3s;
+        z-index: -1;
+      }
+
+      .btn-outline:hover {
+        color: white;
+        border-color: transparent;
+      }
+
+      .btn-outline:hover::after {
+        width: 100%;
+      }
+
+      .btn-pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(192, 38, 211, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(192, 38, 211, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(192, 38, 211, 0);
+        }
+      }
+
+      /* HERO */
+      .hero-modern {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.5rem;
-        margin: 2rem 0;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        margin-bottom: 6rem;
       }
 
-      .hex-stat-card {
-        background: var(--bg-panel);
-        backdrop-filter: blur(8px);
-        border-radius: 40% 60% 45% 55% / 50% 45% 55% 50%;
-        padding: 2rem 1.5rem;
-        box-shadow: var(--card-shadow);
-        border: var(--border-light);
-        text-align: center;
-        transition: 0.2s;
+      .hero-badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: var(--gradient-3);
+        color: white;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        box-shadow: var(--shadow-md);
+        animation: float 3s ease-in-out infinite;
       }
 
-      .hex-stat-card:hover {
-        border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
-        background: color-mix(in srgb, var(--accent-1) 8%, var(--bg-panel));
+      .hero-title {
+        font-size: 4rem;
+        line-height: 1.1;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.5rem;
       }
 
-      .hex-number {
-        font-size: 3.5rem;
-        font-weight: 900;
-        line-height: 1;
-        background: var(--accent-gradient);
+      .hero-title span {
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: inline-block;
+        animation: shake 3s ease-in-out infinite;
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        max-width: 500px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 2.5rem;
+      }
+
+      .hero-stat {
+        display: flex;
+        flex-direction: column;
+        background: var(--surface);
+        padding: 1rem 1.5rem;
+        border-radius: var(--radius-lg);
+        border: var(--border);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .hero-stat-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        background: var(--gradient-2);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
-      .hex-label {
-        color: var(--text-soft);
-        font-weight: 500;
+      .hero-stat-label {
+        font-size: 0.9rem;
+        color: var(--text-tertiary);
+      }
+
+      .hero-image {
+        background: var(--surface);
+        border-radius: var(--radius-xxl);
+        height: 500px;
+        position: relative;
+        overflow: hidden;
+        border: var(--border);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .floating-shape {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: var(--gradient-1);
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.3;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .floating-shape-2 {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background: var(--gradient-2);
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.3;
+        animation: float 8s ease-in-out infinite reverse;
+      }
+
+      /* FEATURES */
+      .section-header {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 4rem;
+      }
+
+      .section-header h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .section-header p {
+        color: var(--text-secondary);
         font-size: 1.1rem;
       }
 
-      /* Section titles */
-      .section-title {
-        font-size: 2.8rem;
-        font-weight: 900;
-        letter-spacing: -1px;
-        margin-bottom: 1rem;
-        position: relative;
-        display: inline-block;
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-bottom: 6rem;
       }
 
-      .section-title::after {
+      .feature-card {
+        padding: 2rem;
+        background: var(--surface);
+        border: var(--border);
+        border-radius: var(--radius-xl);
+        transition: all 0.4s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
         content: "";
         position: absolute;
-        bottom: -10px;
+        top: 0;
         left: 0;
-        width: 100px;
-        height: 8px;
-        background: var(--accent-gradient);
-        border-radius: 8px;
+        right: 0;
+        height: 4px;
+        background: var(--gradient-1);
+        transform: scaleX(0);
+        transition: transform 0.4s;
       }
 
-      .section-sub {
-        color: var(--text-soft);
-        font-size: 1.2rem;
-        margin-bottom: 3rem;
+      .feature-card:hover {
+        transform: translateY(-10px) scale(105%);
+        box-shadow: var(--shadow-lg);
       }
 
-      /* Features grid */
-      .features-cosmos {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.8rem;
-        margin: 3rem 0;
-      }
-
-      .feature-blob {
-        background: var(--bg-panel);
-        backdrop-filter: blur(8px);
-        border-radius: 60% 40% 50% 50% / 45% 50% 50% 55%;
-        padding: 2.5rem 1.8rem;
-        box-shadow: var(--card-shadow);
-        border: var(--border-light);
-        transition: 0.3s;
-        text-align: center;
-      }
-
-      .feature-blob:hover {
-        border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%;
+      .feature-card:hover::before {
+        transform: scaleX(1);
       }
 
       .feature-icon {
-        width: 70px;
-        height: 70px;
-        background: var(--accent-gradient);
-        border-radius: 40% 60% 45% 55% / 50% 45% 55% 50%;
+        width: 60px;
+        height: 60px;
+        background: var(--gradient-1);
+        border-radius: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2rem;
         color: white;
-        margin: 0 auto 1.5rem;
-      }
-
-      .feature-blob h3 {
         font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        transform: rotate(5deg);
+        transition: transform 0.3s;
+        box-shadow: var(--shadow-md);
       }
 
-      .feature-blob p {
-        color: var(--text-soft);
-        line-height: 1.5;
+      .feature-card:hover .feature-icon {
+        transform: rotate(10deg) scale(1.1);
       }
 
-      /* How it works - steps */
-      .steps-quantum {
+      /* STEPS */
+      .steps-container {
+        background: var(--surface);
+        border-radius: var(--radius-xxl);
+        padding: 4rem;
+        border: var(--border);
+        margin-bottom: 6rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .steps-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 1.8rem;
-        margin: 3rem 0;
+        gap: 2rem;
+        margin-top: 3rem;
+        position: relative;
+        z-index: 1;
       }
 
-      .step-orb {
-        background: var(--bg-panel);
-        backdrop-filter: blur(8px);
-        border-radius: 50% 50% 40% 60% / 50% 45% 55% 50%;
-        padding: 2.5rem;
-        box-shadow: var(--card-shadow);
-        border: var(--border-light);
+      .step-item {
         text-align: center;
         position: relative;
       }
 
       .step-number {
-        width: 70px;
-        height: 70px;
-        background: var(--accent-gradient);
-        border-radius: 40% 60% 45% 55% / 50% 45% 55% 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        font-weight: 900;
-        color: white;
-        margin: 0 auto 1.5rem;
-      }
-
-      .step-orb h4 {
-        font-size: 1.6rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-      }
-
-      /* User type cards */
-      .user-types {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.8rem;
-        margin: 3rem 0;
-      }
-
-      .type-card {
-        background: var(--bg-panel);
-        backdrop-filter: blur(8px);
-        border-radius: 60px;
-        padding: 2.5rem;
-        box-shadow: var(--card-shadow);
-        border: var(--border-light);
-        transition: 0.2s;
-      }
-
-      .type-card:hover {
-        transform: translateY(-5px);
-      }
-
-      .type-icon {
-        width: 80px;
-        height: 80px;
-        background: var(--accent-gradient);
-        border-radius: 45% 55% 50% 50% / 50% 45% 55% 50%;
+        width: 100px;
+        height: 100px;
+        background: var(--gradient-3);
+        border-radius: 100px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 2.5rem;
-        color: white;
-        margin-bottom: 1.5rem;
-      }
-
-      .type-card h3 {
-        font-size: 2rem;
         font-weight: 700;
-        margin-bottom: 1.5rem;
+        color: white;
+        margin: 0 auto 1.5rem;
+        box-shadow: var(--shadow-lg);
+        transition: all 0.3s;
       }
 
-      .type-features {
-        list-style: none;
-        margin: 2rem 0;
+      .step-item:hover .step-number {
+        transform: scale(1.1) rotate(360deg);
       }
 
-      .type-features li {
-        margin-bottom: 1rem;
-        color: var(--text-soft);
+      /* USER TYPES */
+      .users-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-bottom: 6rem;
+      }
+
+      .user-type-card {
+        background: var(--surface);
+        border: var(--border);
+        border-radius: var(--radius-xxl);
+        padding: 2rem;
+        transition: all 0.4s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .user-type-card::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200px;
+        height: 200px;
+        background: var(--gradient-1);
+        border-radius: 50%;
+        opacity: 0.1;
+        transition: all 0.4s;
+      }
+
+      .user-type-card:hover {
+        transform: translateY(-10px) scale(105%);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .user-type-card:hover::after {
+        transform: scale(1.5);
+      }
+
+      .user-icon {
+        width: 70px;
+        height: 70px;
+        background: var(--gradient-2);
+        border-radius: 25px;
         display: flex;
         align-items: center;
-        gap: 0.8rem;
-      }
-
-      .type-features i {
-        color: var(--accent-2);
-        font-size: 1.2rem;
-      }
-
-      .btn-card {
-        display: block;
-        padding: 1.2rem;
-        text-align: center;
-        text-decoration: none;
-        border-radius: 60px;
-        font-weight: 700;
-        margin-top: 2rem;
-        background: var(--accent-gradient);
+        justify-content: center;
         color: white;
-        border: none;
-        transition: 0.2s;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        transform: rotate(-5deg);
+        transition: transform 0.3s;
+        box-shadow: var(--shadow-md);
       }
 
-      .btn-card-outline {
-        background: transparent;
-        border: 2px solid var(--accent-1);
-        color: var(--text-dark);
+      .user-type-card:hover .user-icon {
+        transform: rotate(5deg) scale(1.1);
       }
 
-      .btn-card:hover {
-        transform: scale(1.02);
-      }
-
-      /* CTA section */
-      .cta-vortex {
-        background: var(--accent-gradient);
-        border-radius: 70px;
+      /* CTA */
+      .cta-section {
+        background: var(--gradient-3);
+        border-radius: var(--radius-xxl);
         padding: 4rem;
         text-align: center;
-        color: white;
-        margin: 3rem 0;
+        margin-bottom: 4rem;
+        position: relative;
+        overflow: hidden;
       }
 
-      .cta-vortex h2 {
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.2) 0%,
+          transparent 50%
+        );
+        animation: rotate 20s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .cta-section h2 {
         font-size: 3rem;
-        font-weight: 900;
         margin-bottom: 1rem;
+        color: white;
+        position: relative;
+        z-index: 1;
       }
 
-      .cta-vortex p {
-        font-size: 1.3rem;
+      .cta-section p {
+        color: rgba(255, 255, 255, 0.9);
         margin-bottom: 2rem;
-        opacity: 0.9;
+        font-size: 1.1rem;
+        position: relative;
+        z-index: 1;
       }
 
-      .btn-cta {
-        display: inline-block;
-        padding: 1.3rem 3.5rem;
+      .cta-section .btn {
         background: white;
-        color: #1f1b2c;
-        text-decoration: none;
-        border-radius: 60px;
-        font-weight: 700;
-        font-size: 1.2rem;
-        transition: 0.2s;
+        color: var(--primary);
+        position: relative;
+        z-index: 1;
       }
 
-      .btn-cta:hover {
-        transform: scale(1.05);
+      .cta-section .btn:hover {
+        background: var(--surface);
+        transform: translateY(-2px) scale(1.05);
       }
 
-      /* Footer */
-      .footer-quantum {
-        background: var(--bg-panel);
-        backdrop-filter: blur(12px);
-        border-radius: 60px;
-        padding: 3rem;
-        box-shadow: var(--card-shadow);
-        border: var(--border-light);
-        margin-top: 2rem;
-      }
-
-      .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: 2.5rem;
-        margin-bottom: 2rem;
-      }
-
-      .footer-links a {
-        color: var(--text-soft);
-        text-decoration: none;
-        font-weight: 500;
-        transition: 0.2s;
-      }
-
-      .footer-links a:hover {
-        color: var(--accent-1);
-      }
-
-      .footer-quantum p {
-        text-align: center;
-        color: var(--text-soft);
-      }
-
-      /* Responsive */
+      /* RESPONSIVE */
       @media (max-width: 1000px) {
-        .features-cosmos,
-        .steps-quantum,
-        .user-types,
-        .stats-nebula {
+        .hero-modern {
+          grid-template-columns: 1fr;
+        }
+
+        .features-grid,
+        .users-grid {
           grid-template-columns: repeat(2, 1fr);
         }
 
-        .warp-hero {
-          grid-template-columns: 1fr;
-        }
-
-        .cosmic-bar {
-          flex-direction: column;
-          gap: 1rem;
-          border-radius: 40px;
+        .steps-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
       }
 
-      @media (max-width: 600px) {
-        .features-cosmos,
-        .steps-quantum,
-        .user-types,
-        .stats-nebula {
+      @media (max-width: 700px) {
+        .header-modern {
+          flex-direction: column;
+        }
+
+        .nav-menu {
+          display: none;
+        }
+
+        .features-grid,
+        .users-grid,
+        .steps-grid {
           grid-template-columns: 1fr;
         }
 
-        .hero-cta {
+        .hero-title {
+          font-size: 3rem;
+        }
+
+        .hero-actions {
           flex-direction: column;
+        }
+
+        .cta-section {
+          padding: 2rem;
+        }
+
+        .cta-section h2 {
+          font-size: 2rem;
         }
       }
     </style>
   </head>
   <body>
-    <div class="universe">
-      <!-- Cosmic header with auth -->
-      <div class="cosmic-bar">
-        <div class="logo-fusion">
-          <div class="logo-morph"></div>
-          <span>stag.io</span>
+    <div class="container">
+      <!-- HEADER -->
+      <header class="header-modern">
+        <div class="logo">
+          <div class="logo-mark"></div>
+          <span class="logo-text">stag.io</span>
         </div>
+
+        <nav class="nav-menu">
+          <a href="#" class="nav-link">Platform</a>
+          <a href="#" class="nav-link">Solutions</a>
+          <a href="#" class="nav-link">Pricing</a>
+          <a href="#" class="nav-link">Resources</a>
+        </nav>
+
         <div class="header-actions">
-          <div class="theme-circle" id="themeToggle">
-            <i class="bi bi-sun-fill"></i>
+          <div class="theme-btn" id="themeToggle">
+            <i class="bi bi-sun"></i>
           </div>
-          <div class="auth-blob">
-            <!-- CHANGER ICI: utiliser url_for pour les liens -->
-            <a href="{{ url_for('login') }}" class="btn-blob">Sign In</a>
+          <a href="{{ url_for('login') }}" class="btn btn-outline">Sign in</a>
+          <a href="{{ url_for('register') }}" class="btn btn-primary btn-pulse"
+            >Get started</a
+          >
+        </div>
+      </header>
+
+      <!-- HERO -->
+      <section class="hero-modern">
+        <div class="hero-content">
+          <span class="hero-badge">✨ University-Enterprise Platform</span>
+          <h1 class="hero-title">
+            Connect students with
+            <span>perfect internships</span>
+          </h1>
+          <p class="hero-description">
+            Streamline internship management with our all-in-one platform. From
+            matching to document generation, we make it simple.
+          </p>
+          <div class="hero-actions">
             <a
               href="{{ url_for('register') }}"
-              class="btn-blob btn-blob-primary"
-              >Get Started</a
+              class="btn btn-primary btn-pulse"
             >
+              Start your journey <i class="bi bi-arrow-right"></i>
+            </a>
+            <a href="{{ url_for('login') }}" class="btn btn-secondary">
+              I'm a company
+            </a>
           </div>
-        </div>
-      </div>
-
-      <!-- Hero warp -->
-      <div class="warp-hero">
-        <div>
-          <span class="badge-orb">
-            <i class="bi bi-stars me-2"></i>University-Enterprise Link Platform
-          </span>
-
-          <h1>
-            Connect Students with
-            <span style="color: rgba(255, 255, 255, 0.9)"
-              >Perfect Internships</span
-            >
-          </h1>
-
-          <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem">
-            Streamline internship management with our all-in-one platform. From
-            matching to document generation, we make it simple for students,
-            companies, and universities.
-          </p>
-
-          <div class="hero-cta">
-            <!-- CHANGER ICI: utiliser url_for -->
-            <a href="{{ url_for('register') }}" class="btn-hero"
-              >Start Your Journey</a
-            >
-            <a href="{{ url_for('login') }}" class="btn-hero btn-hero-outline"
-              >I'm a Company</a
-            >
-          </div>
-
-          <div class="hero-avatars">
-            <div class="avatar-group">
-              <div class="avatar-circle"></div>
-              <div class="avatar-circle"></div>
-              <div class="avatar-circle"></div>
-              <div class="avatar-circle"></div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-value">500+</span>
+              <span class="hero-stat-label">Students</span>
             </div>
-            <div>
-              <strong style="font-size: 1.2rem">500+ Students</strong><br />
-              <span style="opacity: 0.8">Already registered</span>
+            <div class="hero-stat">
+              <span class="hero-stat-value">150+</span>
+              <span class="hero-stat-label">Companies</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-value">300+</span>
+              <span class="hero-stat-label">Internships</span>
             </div>
           </div>
         </div>
+        <div class="hero-image">
+          <div class="floating-shape" style="top: 20%; left: 20%"></div>
+          <div class="floating-shape-2" style="bottom: 20%; right: 20%"></div>
+          <div
+            class="floating-shape"
+            style="
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 300px;
+              height: 300px;
+            "
+          ></div>
+        </div>
+      </section>
 
-        <div class="hero-image-morph">
-          <img
-            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600"
-            alt="Students collaborating"
-          />
+      <!-- FEATURES -->
+      <section>
+        <div class="section-header">
+          <h2>Everything you need</h2>
+          <p>Powerful features for students, companies and universities</p>
         </div>
-      </div>
 
-      <!-- Stats nebula -->
-      <div class="stats-nebula">
-        <div class="hex-stat-card">
-          <div class="hex-number">500+</div>
-          <div class="hex-label">Students Registered</div>
-        </div>
-        <div class="hex-stat-card">
-          <div class="hex-number">150+</div>
-          <div class="hex-label">Partner Companies</div>
-        </div>
-        <div class="hex-stat-card">
-          <div class="hex-number">300+</div>
-          <div class="hex-label">Internships Completed</div>
-        </div>
-        <div class="hex-stat-card">
-          <div class="hex-number">95%</div>
-          <div class="hex-label">Satisfaction Rate</div>
-        </div>
-      </div>
-
-      <!-- Features -->
-      <div style="text-align: center">
-        <h2 class="section-title">everything you need</h2>
-        <p class="section-sub">
-          Powerful features designed to streamline the entire internship
-          management process
-        </p>
-      </div>
-
-      <div class="features-cosmos">
-        <div class="feature-blob">
-          <div class="feature-icon"><i class="bi bi-search"></i></div>
-          <h3>smart matching</h3>
-          <p>
-            Advanced skill-based filtering system to connect students with the
-            right internship opportunities.
-          </p>
-        </div>
-        <div class="feature-blob">
-          <div class="feature-icon">
-            <i class="bi bi-file-earmark-check"></i>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-search"></i></div>
+            <h3>Smart matching</h3>
+            <p>
+              Advanced filtering system to connect students with the right
+              opportunities.
+            </p>
           </div>
-          <h3>digital documents</h3>
-          <p>
-            Automatically generate internship agreements and certificates with a
-            single click.
-          </p>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="bi bi-file-earmark-check"></i>
+            </div>
+            <h3>Digital documents</h3>
+            <p>
+              Generate agreements and certificates automatically with one click.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-kanban"></i></div>
+            <h3>Central tracking</h3>
+            <p>
+              University administration can track all placements in real-time.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-building"></i></div>
+            <h3>Company portal</h3>
+            <p>
+              Easy interface for companies to post offers and manage applicants.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-graph-up"></i></div>
+            <h3>Analytics</h3>
+            <p>Detailed insights and reports for better decision making.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="bi bi-chat-dots"></i></div>
+            <h3>Communication</h3>
+            <p>
+              Built-in messaging between students, companies and universities.
+            </p>
+          </div>
         </div>
-        <div class="feature-blob">
-          <div class="feature-icon"><i class="bi bi-people"></i></div>
-          <h3>centralized tracking</h3>
-          <p>
-            University administration can validate and track all student
-            placements in one place.
-          </p>
-        </div>
-        <div class="feature-blob">
-          <div class="feature-icon"><i class="bi bi-building"></i></div>
-          <h3>company portal</h3>
-          <p>
-            Easy-to-use interface for companies to post offers and manage
-            applicants.
-          </p>
-        </div>
-      </div>
+      </section>
 
-      <!-- How it works -->
-      <div style="text-align: center">
-        <h2 class="section-title">how it works</h2>
-      </div>
-
-      <div class="steps-quantum">
-        <div class="step-orb">
-          <div class="step-number">1</div>
-          <h4>create profile</h4>
-          <p class="text-soft">
-            Students register with university email and build their digital CV
-          </p>
-        </div>
-        <div class="step-orb">
-          <div class="step-number">2</div>
-          <h4>search & apply</h4>
-          <p class="text-soft">
-            Browse internship offers filtered by skills, location, and type
-          </p>
-        </div>
-        <div class="step-orb">
-          <div class="step-number">3</div>
-          <h4>get matched</h4>
-          <p class="text-soft">
-            Companies review applications and select suitable candidates
-          </p>
-        </div>
-        <div class="step-orb">
-          <div class="step-number">4</div>
-          <h4>start internship</h4>
-          <p class="text-soft">
-            Admin validates and generates official documents automatically
-          </p>
-        </div>
-      </div>
-
-      <!-- User types -->
-      <div style="text-align: center">
-        <h2 class="section-title">built for everyone</h2>
-        <p class="section-sub">
-          Tailored experiences for students, companies, and universities
-        </p>
-      </div>
-
-      <div class="user-types">
-        <!-- Students -->
-        <div class="type-card">
-          <div class="type-icon"><i class="bi bi-book"></i></div>
-          <h3>students</h3>
-          <ul class="type-features">
-            <li>
-              <i class="bi bi-check-lg"></i> create digital CV with skills tags
-            </li>
-            <li>
-              <i class="bi bi-check-lg"></i> search internships by location &
-              tech
-            </li>
-            <li><i class="bi bi-check-lg"></i> track application status</li>
-            <li><i class="bi bi-check-lg"></i> easy document access</li>
-          </ul>
-          <!-- CHANGER ICI: lien vers register avec paramètre -->
-          <a href="{{ url_for('register') }}?type=student" class="btn-card"
-            >register as student</a
-          >
+      <!-- HOW IT WORKS -->
+      <section class="steps-container">
+        <div class="section-header">
+          <h2>How it works</h2>
+          <p>Four simple steps to your dream internship</p>
         </div>
 
-        <!-- Companies -->
-        <div class="type-card">
-          <div class="type-icon"><i class="bi bi-building"></i></div>
-          <h3>companies</h3>
-          <ul class="type-features">
-            <li>
-              <i class="bi bi-check-lg"></i> post & manage internship offers
-            </li>
-            <li><i class="bi bi-check-lg"></i> review qualified candidates</li>
-            <li><i class="bi bi-check-lg"></i> accept/reject applications</li>
-            <li><i class="bi bi-check-lg"></i> streamlined hiring process</li>
-          </ul>
-          <!-- CHANGER ICI: lien vers register avec paramètre -->
-          <a
-            href="{{ url_for('register') }}?type=company"
-            class="btn-card btn-card-outline"
-            >register as company</a
-          >
+        <div class="steps-grid">
+          <div class="step-item">
+            <div class="step-number">1</div>
+            <h4>Create profile</h4>
+            <p>Students register and build their digital CV</p>
+          </div>
+          <div class="step-item">
+            <div class="step-number">2</div>
+            <h4>Search & apply</h4>
+            <p>Browse internships filtered by skills and preferences</p>
+          </div>
+          <div class="step-item">
+            <div class="step-number">3</div>
+            <h4>Get matched</h4>
+            <p>Companies review and select suitable candidates</p>
+          </div>
+          <div class="step-item">
+            <div class="step-number">4</div>
+            <h4>Start internship</h4>
+            <p>Admin validates and generates documents</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- USER TYPES -->
+      <section>
+        <div class="section-header">
+          <h2>Built for everyone</h2>
+          <p>Tailored experiences for each role</p>
         </div>
 
-        <!-- Universities -->
-        <div class="type-card">
-          <div class="type-icon"><i class="bi bi-file-earmark-check"></i></div>
-          <h3>universities</h3>
-          <ul class="type-features">
-            <li>
-              <i class="bi bi-check-lg"></i> validate internship placements
-            </li>
-            <li><i class="bi bi-check-lg"></i> auto-generate documents</li>
-            <li><i class="bi bi-check-lg"></i> track student progress</li>
-            <li><i class="bi bi-check-lg"></i> view detailed statistics</li>
-          </ul>
-          <!-- CHANGER ICI: lien vers login avec paramètre -->
-          <a href="{{ url_for('login') }}?type=admin" class="btn-card"
-            >admin access</a
-          >
+        <div class="users-grid">
+          <!-- Student -->
+          <div class="user-type-card">
+            <div class="user-icon"><i class="bi bi-book"></i></div>
+            <h3>Students</h3>
+            <p class="user-description">
+              Find the perfect internship that matches your skills and career
+              goals.
+            </p>
+            <ul class="user-features">
+              <li><i class="bi bi-check-lg"></i> Digital CV builder</li>
+              <li><i class="bi bi-check-lg"></i> Smart search</li>
+              <li><i class="bi bi-check-lg"></i> Application tracking</li>
+              <li><i class="bi bi-check-lg"></i> Document access</li>
+            </ul>
+            <a
+              href="{{ url_for('register') }}?type=student"
+              class="btn btn-primary btn-block"
+              >Register as student</a
+            >
+          </div>
+
+          <!-- Company -->
+          <div class="user-type-card">
+            <div class="user-icon"><i class="bi bi-building"></i></div>
+            <h3>Companies</h3>
+            <p class="user-description">
+              Find talented students and manage your internship program
+              efficiently.
+            </p>
+            <ul class="user-features">
+              <li><i class="bi bi-check-lg"></i> Post unlimited offers</li>
+              <li><i class="bi bi-check-lg"></i> Review candidates</li>
+              <li><i class="bi bi-check-lg"></i> Manage applications</li>
+              <li><i class="bi bi-check-lg"></i> Analytics</li>
+            </ul>
+            <a
+              href="{{ url_for('register') }}?type=company"
+              class="btn btn-secondary btn-block"
+              >Register as company</a
+            >
+          </div>
+
+          <!-- University -->
+          <div class="user-type-card">
+            <div class="user-icon"><i class="bi bi-shield"></i></div>
+            <h3>Universities</h3>
+            <p class="user-description">
+              Oversee and validate internships with complete visibility.
+            </p>
+            <ul class="user-features">
+              <li><i class="bi bi-check-lg"></i> Validate placements</li>
+              <li><i class="bi bi-check-lg"></i> Auto-generate documents</li>
+              <li><i class="bi bi-check-lg"></i> Track progress</li>
+              <li><i class="bi bi-check-lg"></i> Statistics</li>
+            </ul>
+            <a
+              href="{{ url_for('login') }}?type=admin"
+              class="btn btn-outline btn-block"
+              >Admin access</a
+            >
+          </div>
         </div>
-      </div>
+      </section>
 
       <!-- CTA -->
-      <div class="cta-vortex">
-        <h2>ready to transform your internship experience?</h2>
+      <section class="cta-section">
+        <h2>Ready to transform your internship experience?</h2>
         <p>Join hundreds of students and companies already using Stag.io</p>
-        <!-- CHANGER ICI: lien vers register -->
-        <a href="{{ url_for('register') }}" class="btn-cta">get started free</a>
-      </div>
+        <a href="{{ url_for('register') }}" class="btn btn-primary btn-pulse"
+          >Get started free</a
+        >
+      </section>
 
-      <!-- Footer -->
-      <div class="footer-quantum">
-        <div class="footer-links">
-          <a href="#">about</a>
-          <a href="#">contact</a>
-          <a href="#">privacy</a>
-          <a href="#">terms</a>
+      <!-- FOOTER -->
+      <footer class="footer-modern">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo">
+              <div class="logo-mark"></div>
+              <span class="logo-text">stag.io</span>
+            </div>
+            <p>
+              Making internship management simple and efficient for everyone.
+            </p>
+          </div>
+          <div class="footer-links">
+            <h6>Product</h6>
+            <ul>
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">Security</a></li>
+              <li><a href="#">Enterprise</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h6>Company</h6>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h6>Resources</h6>
+            <ul>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">Help center</a></li>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms</a></li>
+            </ul>
+          </div>
         </div>
-        <p>
-          © 2026 Stag.io - University-Enterprise Internship Platform. All rights
-          reserved.
-        </p>
-      </div>
+        <div class="footer-bottom">
+          <p>© 2026 Stag.io. All rights reserved.</p>
+          <div class="social-links">
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+      </footer>
     </div>
 
     <script>
-      (function () {
-        const toggleBtn = document.getElementById("themeToggle");
-        const body = document.body;
-        const icon = toggleBtn.querySelector("i");
+      const toggleBtn = document.getElementById("themeToggle");
+      const body = document.body;
+      const icon = toggleBtn.querySelector("i");
 
-        function setTheme(theme) {
-          if (theme === "dark") {
-            body.classList.add("dark");
-            icon.className = "bi bi-moon-fill";
-          } else {
-            body.classList.remove("dark");
-            icon.className = "bi bi-sun-fill";
-          }
-          localStorage.setItem("stagio-theme", theme);
+      function setTheme(theme) {
+        if (theme === "dark") {
+          body.classList.add("dark");
+          icon.className = "bi bi-moon";
+        } else {
+          body.classList.remove("dark");
+          icon.className = "bi bi-sun";
         }
+        localStorage.setItem("stagio-theme", theme);
+      }
 
-        const saved = localStorage.getItem("stagio-theme") || "light";
-        setTheme(saved);
+      const saved = localStorage.getItem("stagio-theme") || "light";
+      setTheme(saved);
 
-        toggleBtn.addEventListener("click", () => {
-          const isDark = body.classList.contains("dark");
-          setTheme(isDark ? "light" : "dark");
-        });
-      })();
+      toggleBtn.addEventListener("click", () => {
+        setTheme(body.classList.contains("dark") ? "light" : "dark");
+      });
     </script>
   </body>
 </html>
