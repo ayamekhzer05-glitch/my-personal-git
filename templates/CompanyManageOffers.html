@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stag.io · create new offer · radical redesign</title>
+    <title>Stag.io · manage offers · radical redesign</title>
     <!-- Bootstrap Icons only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
@@ -65,7 +65,7 @@
         gap: 2rem;
       }
 
-      /* cosmic bar (identical to previous) */
+      /* cosmic bar (identical) */
       .cosmic-bar {
         display: flex;
         align-items: center;
@@ -223,7 +223,7 @@
         margin-left: 8px;
       }
 
-      /* warp welcome (create offer context) */
+      /* warp welcome (manage offers context) */
       .warp-welcome {
         background: var(--accent-gradient);
         border-radius: 70px;
@@ -241,7 +241,7 @@
         letter-spacing: -1px;
       }
 
-      /* main form card (nebula style) */
+      /* main card nebula — now holds offers grid AND edit form (hidden by default) */
       .nebula-card {
         background: var(--bg-panel);
         backdrop-filter: blur(12px);
@@ -249,6 +249,190 @@
         padding: 2.5rem;
         box-shadow: var(--card-shadow);
         border: var(--border-light);
+      }
+
+      .offers-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .offers-header h2 {
+        font-weight: 900;
+        font-size: 2.2rem;
+        letter-spacing: -0.5px;
+      }
+
+      .btn-radial-primary {
+        background: var(--accent-gradient);
+        border: none;
+        padding: 0.9rem 2.5rem;
+        border-radius: 60px;
+        font-weight: 700;
+        color: white;
+        box-shadow: var(--glow);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        transition: 0.1s;
+        text-decoration: none;
+        border: var(--border-light);
+      }
+
+      .btn-radical-light {
+        background: white;
+        border: none;
+        padding: 0.9rem 2.5rem;
+        border-radius: 60px;
+        font-weight: 700;
+        color: #1f1b2c;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        transition: 0.1s;
+        cursor: pointer;
+        border: var(--border-light);
+      }
+      body.dark .btn-radical-light {
+        background: #2b263f;
+        color: #eae3ff;
+      }
+
+      /* offers grid — radical card layout */
+      .offers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 1.8rem;
+        margin-top: 1rem;
+      }
+
+      .offer-card {
+        background: color-mix(in srgb, var(--bg-main) 40%, transparent);
+        backdrop-filter: blur(8px);
+        border-radius: 40px;
+        padding: 1.8rem 1.8rem 1.8rem 2rem;
+        border: var(--border-light);
+        transition: transform 0.15s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        box-shadow: var(--card-shadow);
+      }
+
+      .offer-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--glow);
+      }
+
+      .offer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .offer-title {
+        font-weight: 900;
+        font-size: 1.7rem;
+        letter-spacing: -0.5px;
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .offer-badge {
+        background: var(--accent-2);
+        color: white;
+        padding: 0.3rem 1.2rem;
+        border-radius: 60px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        border: var(--border-light);
+      }
+
+      .offer-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 1.8rem;
+        color: var(--text-soft);
+        font-weight: 500;
+        margin: 0.5rem 0;
+      }
+
+      .offer-detail-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .offer-detail-item i {
+        color: var(--accent-1);
+        font-size: 1.2rem;
+      }
+
+      .offer-skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0.2rem 0;
+      }
+
+      .skill-tag {
+        background: color-mix(in srgb, var(--accent-1) 12%, transparent);
+        border-radius: 60px;
+        padding: 0.4rem 1.2rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        border: var(--border-light);
+        color: var(--text-dark);
+      }
+
+      .offer-footer-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.8rem;
+        margin-top: 0.7rem;
+        border-top: 2px dotted var(--border-light);
+        padding-top: 1.2rem;
+      }
+
+      .action-icon-btn {
+        background: transparent;
+        border: var(--border-light);
+        border-radius: 50%;
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        color: var(--text-soft);
+        cursor: pointer;
+        transition: 0.1s;
+        text-decoration: none;
+      }
+
+      .action-icon-btn:hover {
+        background: var(--accent-1);
+        color: white;
+        border-color: var(--accent-1);
+      }
+
+      .delete-btn:hover {
+        background: #ff3b5c;
+        color: white;
+      }
+
+      /* Edit Form Styles (matches original create offer design) */
+      .edit-form-container {
+        margin-top: 2rem;
+        border-top: 3px dashed var(--accent-1);
+        padding-top: 2rem;
       }
 
       .form-title {
@@ -261,7 +445,6 @@
         letter-spacing: -0.5px;
       }
 
-      /* form grid */
       .form-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -324,44 +507,6 @@
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23b8b0d0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
       }
 
-      /* buttons */
-      .btn-radical-light {
-        background: white;
-        border: none;
-        padding: 0.9rem 2.5rem;
-        border-radius: 60px;
-        font-weight: 700;
-        color: #1f1b2c;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        transition: 0.1s;
-        cursor: pointer;
-        border: var(--border-light);
-      }
-
-      .btn-radial-primary {
-        background: var(--accent-gradient);
-        border: none;
-        padding: 0.9rem 2.5rem;
-        border-radius: 60px;
-        font-weight: 700;
-        color: white;
-        box-shadow: var(--glow);
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        cursor: pointer;
-        transition: 0.1s;
-      }
-
-      body.dark .btn-radical-light {
-        background: #2b263f;
-        color: #eae3ff;
-      }
-
       .action-buttons {
         display: flex;
         justify-content: flex-end;
@@ -377,11 +522,23 @@
         opacity: 0.4;
         font-size: 0.8rem;
       }
+
+      .radical-input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(0.5);
+      }
+      body.dark .radical-input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+      }
+
+      /* Utility to hide elements */
+      .hidden {
+        display: none !important;
+      }
     </style>
   </head>
   <body>
     <div class="universe">
-      <!-- cosmic header (with company context) -->
+      <!-- cosmic header (same) -->
       <div class="cosmic-bar">
         <div class="logo-fusion">
           <div class="logo-morph"></div>
@@ -405,15 +562,15 @@
         </div>
       </div>
 
-      <!-- navigation pills (active = Manage Offers, but create is subpage) -->
+      <!-- navigation pills (active = Manage Offers) -->
       <div class="navigation-fresh">
-        <a href="{{ url_for('company_dashboard') }}" class="nav-pill"
+        <a href="{{ url_for('company_dashboard') }}" class="nav-pill active"
           ><i class="bi bi-grid-1x2-fill"></i> Dashboard</a
         >
         <a href="{{ url_for('company_profile') }}" class="nav-pill"
           ><i class="bi bi-building"></i> Company Profile</a
         >
-        <a href="{{ url_for('company_manage_offers') }}" class="nav-pill active"
+        <a href="{{ url_for('company_manage_offers') }}" class="nav-pill"
           ><i class="bi bi-briefcase"></i> Manage Offers
           <span class="badge-new">8</span></a
         >
@@ -426,135 +583,259 @@
         >
       </div>
 
-      <!-- warp welcome (create new offer) -->
+      <!-- warp welcome (manage offers) -->
       <div class="warp-welcome">
         <div>
-          <h1>create new offer</h1>
+          <h1>manage offers</h1>
           <p style="opacity: 0.9">
-            fill in the details to publish an internship
+            edit, delete or create new internship positions
           </p>
         </div>
-        <i class="bi bi-file-plus fs-1"></i>
+        <i class="bi bi-briefcase fs-1"></i>
       </div>
 
-      <!-- main form card (nebula) -->
+      <!-- main nebula card: offers grid + edit form -->
       <div class="nebula-card">
-        <div class="form-title">
-          <h2>
-            <i class="bi bi-pencil-square" style="margin-right: 12px"></i> Offer
-            details
-          </h2>
+        <!-- Offers Grid Section -->
+        <div id="offersSection">
+          <div class="offers-header">
+            <h2><i class="bi bi-list-check" style="margin-right: 12px"></i> Your offers</h2>
+            <!-- create new button – leads to same form but kept for consistency (points to create page) -->
+            <a href="{{ url_for('company_create_offer') }}"
+          class="btn-radical-light"
+          >
+              </i> Create new offer
+            </a>
+          </div>
+
+          <!-- offers grid with sample data -->
+          <div class="offers-grid" id="offersGrid">
+            <!-- card 1 : full stack -->
+            <div class="offer-card" data-offer-id="1">
+              <div class="offer-top">
+                <span class="offer-title">Full Stack Dev</span>
+                <span class="offer-badge">active</span>
+              </div>
+              <div class="offer-details">
+                <span class="offer-detail-item"><i class="bi bi-clock"></i> 6 months</span>
+                <span class="offer-detail-item"><i class="bi bi-people"></i> 3 positions</span>
+                <span class="offer-detail-item"><i class="bi bi-geo-alt"></i> Alger</span>
+                <span class="offer-detail-item"><i class="bi bi-calendar"></i> deadline: 2025-07-15</span>
+              </div>
+              <div class="offer-skills">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">MongoDB</span>
+              </div>
+              <div class="offer-footer-actions">
+                <a href="#" class="action-icon-btn" onclick="openEditForm(1)" title="Edit offer">
+                  <i class="bi bi-pencil"></i>
+                </a>
+                <a href="#" class="action-icon-btn delete-btn" onclick="fakeDelete(1)" title="Delete offer">
+                  <i class="bi bi-trash3"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- card 2 : ui/ux intern -->
+            <div class="offer-card" data-offer-id="2">
+              <div class="offer-top">
+                <span class="offer-title">UI/UX Intern</span>
+                <span class="offer-badge">active</span>
+              </div>
+              <div class="offer-details">
+                <span class="offer-detail-item"><i class="bi bi-clock"></i> 4 months</span>
+                <span class="offer-detail-item"><i class="bi bi-people"></i> 2 positions</span>
+                <span class="offer-detail-item"><i class="bi bi-geo-alt"></i> Remote</span>
+                <span class="offer-detail-item"><i class="bi bi-calendar"></i> deadline: 2025-06-01</span>
+              </div>
+              <div class="offer-skills">
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">Adobe XD</span>
+                <span class="skill-tag">user research</span>
+              </div>
+              <div class="offer-footer-actions">
+                <a href="#" class="action-icon-btn" onclick="openEditForm(2)" title="Edit offer">
+                  <i class="bi bi-pencil"></i>
+                </a>
+                <a href="#" class="action-icon-btn delete-btn" onclick="fakeDelete(2)" title="Delete offer">
+                  <i class="bi bi-trash3"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- card 3 : data science -->
+            <div class="offer-card" data-offer-id="3">
+              <div class="offer-top">
+                <span class="offer-title">Data Science</span>
+                <span class="offer-badge">draft</span>
+              </div>
+              <div class="offer-details">
+                <span class="offer-detail-item"><i class="bi bi-clock"></i> 5 months</span>
+                <span class="offer-detail-item"><i class="bi bi-people"></i> 1 position</span>
+                <span class="offer-detail-item"><i class="bi bi-geo-alt"></i> Alger</span>
+                <span class="offer-detail-item"><i class="bi bi-calendar"></i> deadline: 2025-08-20</span>
+              </div>
+              <div class="offer-skills">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">Pandas</span>
+              </div>
+              <div class="offer-footer-actions">
+                <a href="#" class="action-icon-btn" onclick="openEditForm(3)" title="Edit offer">
+                  <i class="bi bi-pencil"></i>
+                </a>
+                <a href="#" class="action-icon-btn delete-btn" onclick="fakeDelete(3)" title="Delete offer">
+                  <i class="bi bi-trash3"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- card 4 : backend (extra) -->
+            <div class="offer-card" data-offer-id="4">
+              <div class="offer-top">
+                <span class="offer-title">Backend Eng</span>
+                <span class="offer-badge">active</span>
+              </div>
+              <div class="offer-details">
+                <span class="offer-detail-item"><i class="bi bi-clock"></i> 6 months</span>
+                <span class="offer-detail-item"><i class="bi bi-people"></i> 2 positions</span>
+                <span class="offer-detail-item"><i class="bi bi-geo-alt"></i> Oran</span>
+                <span class="offer-detail-item"><i class="bi bi-calendar"></i> deadline: 2025-06-30</span>
+              </div>
+              <div class="offer-skills">
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Spring</span>
+                <span class="skill-tag">PostgreSQL</span>
+              </div>
+              <div class="offer-footer-actions">
+                <a href="#" class="action-icon-btn" onclick="openEditForm(4)" title="Edit offer">
+                  <i class="bi bi-pencil"></i>
+                </a>
+                <a href="#" class="action-icon-btn delete-btn" onclick="fakeDelete(4)" title="Delete offer">
+                  <i class="bi bi-trash3"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <form
-          onsubmit="
-            event.preventDefault();
-            alert('Offer published! (demo)');
-          "
-        >
-          <div class="form-grid">
-            <!-- Position Title -->
-            <div class="form-field">
-              <label>Position Title</label>
-              <input
-                type="text"
-                class="radical-input"
-                placeholder="e.g. Full Stack Developer"
-              />
-            </div>
-
-            <!-- Employment Type -->
-            <div class="form-field">
-              <label>Employment Type</label>
-              <select class="radical-select">
-                <option selected disabled>Select type</option>
-                <option>Full-time</option>
-                <option>Part-time</option>
-                <option>Remote</option>
-              </select>
-            </div>
-
-            <!-- Duration -->
-            <div class="form-field">
-              <label>Duration</label>
-              <input
-                type="text"
-                class="radical-input"
-                placeholder="e.g. 6 months"
-              />
-            </div>
-
-            <!-- Number of Positions -->
-            <div class="form-field">
-              <label>Number of Positions</label>
-              <input type="number" class="radical-input" placeholder="e.g. 3" />
-            </div>
-
-            <!-- Application Deadline -->
-            <div class="form-field">
-              <label>Application Deadline</label>
-              <input type="date" class="radical-input" />
-            </div>
-
-            <!-- Location -->
-            <div class="form-field">
-              <label>Location</label>
-              <input
-                type="text"
-                class="radical-input"
-                placeholder="e.g. Alger"
-              />
-            </div>
-
-            <!-- Required Skills (full width) -->
-            <div class="form-field full-width">
-              <label>Required Skills</label>
-              <input
-                type="text"
-                class="radical-input"
-                placeholder="e.g. React, Node.js, MongoDB"
-              />
-            </div>
-
-            <!-- Description (full width) -->
-            <div class="form-field full-width">
-              <label>Description</label>
-              <textarea
-                class="radical-textarea"
-                placeholder="Describe the internship..."
-              ></textarea>
-            </div>
+        <!-- Edit Form Section (hidden by default) -->
+        <div id="editFormSection" class="edit-form-container hidden">
+          <div class="form-title">
+            <h2>
+              <i class="bi bi-pencil-square" style="margin-right: 12px"></i> Edit offer
+              <span id="editOfferIdDisplay" style="font-size: 1rem; background: var(--accent-1); color: white; padding: 0.3rem 1rem; border-radius: 60px; margin-left: 1rem;">ID: -</span>
+            </h2>
           </div>
 
-          <!-- Buttons -->
-          <div class="action-buttons">
-            <a
-              href="{{ url_for('company_manage_offers') }}"
-              class="btn-radical-light"
-              >Cancel</a
-            >
-            <button type="submit" class="btn-radial-primary">
-              <i class="bi bi-check-lg"></i> Publish Offer
-            </button>
-          </div>
-        </form>
+          <form id="editOfferForm" onsubmit="saveEdit(event)">
+            <div class="form-grid">
+              <!-- Position Title -->
+              <div class="form-field">
+                <label>Position Title</label>
+                <input
+                  type="text"
+                  id="editTitle"
+                  class="radical-input"
+                  placeholder="e.g. Full Stack Developer"
+                />
+              </div>
 
-        <!-- subtle note -->
+              <!-- Employment Type -->
+              <div class="form-field">
+                <label>Employment Type</label>
+                <select id="editType" class="radical-select">
+                  <option value="Full-time">Full-time</option>
+                  <option value="Part-time">Part-time</option>
+                  <option value="Remote">Remote</option>
+                </select>
+              </div>
+
+              <!-- Duration -->
+              <div class="form-field">
+                <label>Duration</label>
+                <input
+                  type="text"
+                  id="editDuration"
+                  class="radical-input"
+                  placeholder="e.g. 6 months"
+                />
+              </div>
+
+              <!-- Number of Positions -->
+              <div class="form-field">
+                <label>Number of Positions</label>
+                <input type="number" id="editPositions" class="radical-input" placeholder="e.g. 3" />
+              </div>
+
+              <!-- Application Deadline -->
+              <div class="form-field">
+                <label>Application Deadline</label>
+                <input type="date" id="editDeadline" class="radical-input" />
+              </div>
+
+              <!-- Location -->
+              <div class="form-field">
+                <label>Location</label>
+                <input
+                  type="text"
+                  id="editLocation"
+                  class="radical-input"
+                  placeholder="e.g. Alger"
+                />
+              </div>
+
+              <!-- Required Skills (full width) -->
+              <div class="form-field full-width">
+                <label>Required Skills</label>
+                <input
+                  type="text"
+                  id="editSkills"
+                  class="radical-input"
+                  placeholder="e.g. React, Node.js, MongoDB"
+                />
+              </div>
+
+              <!-- Description (full width) -->
+              <div class="form-field full-width">
+                <label>Description</label>
+                <textarea
+                  id="editDescription"
+                  class="radical-textarea"
+                  placeholder="Describe the internship..."
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="action-buttons">
+              <button type="button" class="btn-radical-light" onclick="closeEditForm()">Cancel</button>
+              <button type="submit" class="btn-radial-primary">
+                <i class="bi bi-check-lg"></i> Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- subtle note / footer inside card -->
         <div
           style="
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             color: var(--text-soft);
             font-size: 0.9rem;
             text-align: center;
+            border-top: 2px dotted var(--border-light);
+            padding-top: 2rem;
           "
         >
-          <i class="bi bi-dot"></i> same fields as original · radical redesign
+          <i class="bi bi-dot"></i> radical redesign · manage offers (edit / delete) · same design language
         </div>
       </div>
 
-      <!-- footer -->
+      <!-- footer quantum -->
       <div class="footer-quantum">
-        Stag.io · create new offer · radical redesign, same functionality
+        Stag.io · manage offers · edit & delete with radical flair
       </div>
     </div>
 
@@ -586,14 +867,210 @@
       })();
     </script>
 
-    <!-- small adjustments -->
-    <style>
-      .radical-input[type="date"]::-webkit-calendar-picker-indicator {
-        filter: invert(0.5);
+    <!-- Enhanced edit functionality -->
+    <script>
+      // Sample offers data store (for demo purposes)
+      const offersData = {
+        1: {
+          title: "Full Stack Dev",
+          type: "Full-time",
+          duration: "6 months",
+          positions: "3",
+          deadline: "2025-07-15",
+          location: "Alger",
+          skills: "React, Node.js, MongoDB",
+          description: "We are looking for a full stack developer to join our team."
+        },
+        2: {
+          title: "UI/UX Intern",
+          type: "Remote",
+          duration: "4 months",
+          positions: "2",
+          deadline: "2025-06-01",
+          location: "Remote",
+          skills: "Figma, Adobe XD, user research",
+          description: "Join our design team to create amazing user experiences."
+        },
+        3: {
+          title: "Data Science",
+          type: "Full-time",
+          duration: "5 months",
+          positions: "1",
+          deadline: "2025-08-20",
+          location: "Alger",
+          skills: "Python, SQL, Pandas",
+          description: "Work on exciting data projects and machine learning models."
+        },
+        4: {
+          title: "Backend Eng",
+          type: "Full-time",
+          duration: "6 months",
+          positions: "2",
+          deadline: "2025-06-30",
+          location: "Oran",
+          skills: "Java, Spring, PostgreSQL",
+          description: "Build robust backend services and APIs."
+        }
+      };
+
+      // Current editing offer ID
+      let currentEditId = null;
+
+      // Function to open edit form and populate with offer data
+      function openEditForm(offerId) {
+        event.preventDefault();
+        
+        // Get offer data
+        const offer = offersData[offerId];
+        if (!offer) {
+          alert("Offer not found!");
+          return;
+        }
+
+        // Set current edit ID
+        currentEditId = offerId;
+
+        // Populate form fields
+        document.getElementById('editTitle').value = offer.title || '';
+        document.getElementById('editType').value = offer.type || 'Full-time';
+        document.getElementById('editDuration').value = offer.duration || '';
+        document.getElementById('editPositions').value = offer.positions || '';
+        document.getElementById('editDeadline').value = offer.deadline || '';
+        document.getElementById('editLocation').value = offer.location || '';
+        document.getElementById('editSkills').value = offer.skills || '';
+        document.getElementById('editDescription').value = offer.description || '';
+        
+        // Update offer ID display
+        document.getElementById('editOfferIdDisplay').textContent = `ID: ${offerId}`;
+
+        // Hide offers section, show edit form
+        document.getElementById('offersSection').classList.add('hidden');
+        document.getElementById('editFormSection').classList.remove('hidden');
+
+        // Smooth scroll to form
+        document.getElementById('editFormSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-      body.dark .radical-input[type="date"]::-webkit-calendar-picker-indicator {
-        filter: invert(1);
+
+      // Function to close edit form and return to offers grid
+      function closeEditForm() {
+        document.getElementById('offersSection').classList.remove('hidden');
+        document.getElementById('editFormSection').classList.add('hidden');
+        currentEditId = null;
       }
-    </style>
+
+      // Function to save edited offer
+      function saveEdit(event) {
+        event.preventDefault();
+
+        if (!currentEditId) {
+          alert("No offer is being edited.");
+          return;
+        }
+
+        // Get updated values
+        const updatedOffer = {
+          title: document.getElementById('editTitle').value,
+          type: document.getElementById('editType').value,
+          duration: document.getElementById('editDuration').value,
+          positions: document.getElementById('editPositions').value,
+          deadline: document.getElementById('editDeadline').value,
+          location: document.getElementById('editLocation').value,
+          skills: document.getElementById('editSkills').value,
+          description: document.getElementById('editDescription').value
+        };
+
+        // Update the offersData store
+        offersData[currentEditId] = updatedOffer;
+
+        // Update the corresponding card in the UI
+        updateOfferCard(currentEditId, updatedOffer);
+
+        // Show success message
+        alert(`✅ Offer #${currentEditId} has been updated successfully!`);
+
+        // Close the edit form
+        closeEditForm();
+      }
+
+      // Helper function to update the offer card in the grid
+      function updateOfferCard(offerId, offerData) {
+        const card = document.querySelector(`.offer-card[data-offer-id="${offerId}"]`);
+        if (!card) return;
+
+        // Update title
+        const titleElement = card.querySelector('.offer-title');
+        if (titleElement) titleElement.textContent = offerData.title;
+
+        // Update badge (keep same logic, you can change based on data if needed)
+        // For demo, we keep as is or you could update based on some criteria
+
+        // Update details
+        const detailsContainer = card.querySelector('.offer-details');
+        if (detailsContainer) {
+          // This is a bit fragile but works for demo
+          const detailItems = detailsContainer.querySelectorAll('.offer-detail-item');
+          if (detailItems.length >= 4) {
+            // Update duration (first item)
+            const durationIcon = detailItems[0].querySelector('i').outerHTML;
+            detailItems[0].innerHTML = durationIcon + ' ' + offerData.duration;
+            
+            // Update positions (second item)
+            const positionsIcon = detailItems[1].querySelector('i').outerHTML;
+            detailItems[1].innerHTML = positionsIcon + ' ' + offerData.positions + ' positions';
+            
+            // Update location (third item)
+            const locationIcon = detailItems[2].querySelector('i').outerHTML;
+            detailItems[2].innerHTML = locationIcon + ' ' + offerData.location;
+            
+            // Update deadline (fourth item)
+            const deadlineIcon = detailItems[3].querySelector('i').outerHTML;
+            detailItems[3].innerHTML = deadlineIcon + ' deadline: ' + offerData.deadline;
+          }
+        }
+
+        // Update skills
+        const skillsContainer = card.querySelector('.offer-skills');
+        if (skillsContainer) {
+          const skillsArray = offerData.skills.split(',').map(s => s.trim());
+          skillsContainer.innerHTML = skillsArray.map(skill => 
+            `<span class="skill-tag">${skill}</span>`
+          ).join('');
+        }
+      }
+
+      // Fake create function (opens a demo alert)
+      function fakeCreate() {
+        event.preventDefault();
+        alert("✨ Create new offer — this would open the creation form (same design as before).");
+      }
+
+      // Delete handler with confirmation, then remove card
+      function fakeDelete(offerId) {
+        event.preventDefault();
+        const userConfirmed = confirm(`Delete offer #${offerId}? This is a demo — card will vanish (but not permanently).`);
+        if (userConfirmed) {
+          // Remove from offersData
+          delete offersData[offerId];
+          
+          // Remove the card
+          const card = document.querySelector(`.offer-card[data-offer-id="${offerId}"]`);
+          if (card) {
+            card.remove();
+            alert(`✅ Offer #${offerId} deleted (UI updated). In real app would call backend.`);
+          }
+
+          // If the deleted offer was being edited, close the form
+          if (currentEditId == offerId) {
+            closeEditForm();
+          }
+        }
+      }
+
+      // Handle cancel button to close form
+      document.addEventListener('DOMContentLoaded', function() {
+        // Ensure edit form is hidden on page load
+        closeEditForm();
+      });
+    </script>
   </body>
 </html>

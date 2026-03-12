@@ -533,7 +533,10 @@
         <div class="pending-nebula">
           <div class="pending-title">
             <span>⏳ pending validations</span>
-            <button class="btn-ghost-white">view all</button>
+            <a href="{{ url_for('admin_validation') }}" class="btn-ghost-white">
+    <i class="btn-radical-light"></i> view all
+</a>
+           
           </div>
           <div class="pending-list">
             <div class="pending-fragment">
