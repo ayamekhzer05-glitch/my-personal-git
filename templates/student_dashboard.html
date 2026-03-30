@@ -4,12 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Dashboard · Stag.io cosmic</title>
-    <!-- Bootstrap Icons only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <!-- Satoshi font -->
     <link
       href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap"
       rel="stylesheet"
@@ -20,7 +18,6 @@
         padding: 0;
         box-sizing: border-box;
       }
-
       :root {
         --bg-main: #f2f0f5;
         --bg-panel: #ffffffd9;
@@ -34,7 +31,6 @@
         --border-light: 1px solid rgba(255, 255, 255, 0.5);
         --glow: 0 15px 30px -10px #6c47ff80;
       }
-
       body.dark {
         --bg-main: #12101c;
         --bg-panel: #1d1a2bd9;
@@ -45,7 +41,6 @@
         --card-shadow: 0 30px 50px -25px #010014, 0 0 0 1px #ffffff0d;
         --border-light: 1px solid #ffffff12;
       }
-
       body {
         background: var(--bg-main);
         font-family: "Satoshi", sans-serif;
@@ -54,20 +49,17 @@
         position: relative;
         overflow-x: hidden;
       }
-
-      /* Animated background blobs */
       .bg-blob {
         position: fixed;
         width: 600px;
         height: 600px;
-        border-radius: 60% 40% 50% 50% / 45% 50% 50% 55%;
+        border-radius: 60% 40% 50% 50%/45% 50% 50% 55%;
         background: var(--accent-gradient);
         opacity: 0.08;
         filter: blur(60px);
         z-index: 0;
         animation: float 20s infinite ease-in-out;
       }
-
       .bg-blob-1 {
         top: -200px;
         right: -100px;
@@ -75,7 +67,6 @@
         height: 700px;
         animation-delay: -5s;
       }
-
       .bg-blob-2 {
         bottom: -200px;
         left: -100px;
@@ -84,7 +75,6 @@
         background: linear-gradient(145deg, #ff4d9a, #6c47ff);
         animation-delay: -10s;
       }
-
       .bg-blob-3 {
         top: 50%;
         left: 50%;
@@ -94,7 +84,6 @@
         opacity: 0.05;
         animation: pulse 15s infinite ease-in-out;
       }
-
       @keyframes float {
         0%,
         100% {
@@ -107,7 +96,6 @@
           transform: translate(-20px, 20px) rotate(-5deg);
         }
       }
-
       @keyframes pulse {
         0%,
         100% {
@@ -117,8 +105,6 @@
           transform: translate(-50%, -50%) scale(1.1);
         }
       }
-
-      /* Main container */
       .cosmic-container {
         position: relative;
         z-index: 10;
@@ -126,8 +112,6 @@
         margin: 0 auto;
         padding: 1.5rem;
       }
-
-      /* Theme toggle */
       .theme-orb {
         position: fixed;
         bottom: 2rem;
@@ -147,12 +131,9 @@
         box-shadow: var(--card-shadow);
         z-index: 100;
       }
-
       .theme-orb:hover {
         transform: scale(1.1) rotate(15deg);
       }
-
-      /* Header - more minimal */
       .cosmic-header {
         display: flex;
         align-items: center;
@@ -160,18 +141,17 @@
         margin-bottom: 3rem;
         padding: 0.5rem 0;
       }
-
       .logo-fusion {
         display: flex;
         align-items: center;
         gap: 12px;
+        text-decoration: none;
       }
-
       .logo-morph {
         width: 48px;
         height: 48px;
         background: var(--accent-gradient);
-        border-radius: 35% 65% 70% 30% / 44% 30% 70% 56%;
+        border-radius: 35% 65% 70% 30%/44% 30% 70% 56%;
         box-shadow: var(--glow);
         display: flex;
         align-items: center;
@@ -181,17 +161,15 @@
         font-size: 1.5rem;
         animation: morph 8s infinite ease-in-out;
       }
-
       @keyframes morph {
         0%,
         100% {
-          border-radius: 35% 65% 70% 30% / 44% 30% 70% 56%;
+          border-radius: 35% 65% 70% 30%/44% 30% 70% 56%;
         }
         50% {
-          border-radius: 60% 40% 30% 70% / 30% 60% 40% 70%;
+          border-radius: 60% 40% 30% 70%/30% 60% 40% 70%;
         }
       }
-
       .logo-fusion span {
         font-weight: 900;
         font-size: 2rem;
@@ -200,33 +178,28 @@
         -webkit-text-fill-color: transparent;
         letter-spacing: -2px;
       }
-
       .profile-group {
         display: flex;
         align-items: center;
         gap: 1.5rem;
       }
-
       .greeting {
         text-align: right;
       }
-
       .greeting .name {
         font-weight: 900;
         font-size: 1.2rem;
         color: var(--text-dark);
       }
-
       .greeting .role {
         color: var(--text-soft);
         font-size: 0.9rem;
       }
-
       .blob-avatar-large {
         width: 60px;
         height: 60px;
         background: var(--accent-gradient);
-        border-radius: 45% 55% 64% 36% / 48% 41% 59% 52%;
+        border-radius: 45% 55% 64% 36%/48% 41% 59% 52%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -235,8 +208,6 @@
         font-size: 1.5rem;
         box-shadow: var(--glow);
       }
-
-      /* Sidebar - floating pills */
       .sidebar-floating {
         position: sticky;
         top: 2rem;
@@ -244,7 +215,6 @@
         flex-direction: column;
         gap: 0.8rem;
       }
-
       .nav-pill-cosmic {
         display: flex;
         align-items: center;
@@ -260,38 +230,31 @@
         font-weight: 500;
         box-shadow: var(--card-shadow);
       }
-
       .nav-pill-cosmic i {
         font-size: 1.3rem;
       }
-
       .nav-pill-cosmic:hover {
         transform: translateX(10px);
         background: var(--accent-gradient);
         color: white;
         border-color: transparent;
       }
-
       .nav-pill-cosmic.active {
         background: var(--accent-gradient);
         color: white;
         box-shadow: var(--glow);
       }
-
       .nav-pill-cosmic.text-danger {
         color: #ff4d9a;
       }
-
       .nav-pill-cosmic.text-danger:hover {
         background: #ff4d9a;
         color: white;
       }
-
-      /* Welcome orb */
       .welcome-orb {
         background: var(--bg-panel);
         backdrop-filter: blur(8px);
-        border-radius: 60% 40% 50% 50% / 45% 50% 50% 55%;
+        border-radius: 60% 40% 50% 50%/45% 50% 50% 55%;
         padding: 2.5rem;
         box-shadow: var(--card-shadow);
         border: var(--border-light);
@@ -299,7 +262,6 @@
         position: relative;
         overflow: hidden;
       }
-
       .welcome-orb::before {
         content: "";
         position: absolute;
@@ -312,7 +274,6 @@
         border-radius: 40%;
         animation: rotate 20s linear infinite;
       }
-
       @keyframes rotate {
         from {
           transform: rotate(0deg);
@@ -321,12 +282,10 @@
           transform: rotate(360deg);
         }
       }
-
       .welcome-content {
         position: relative;
         z-index: 2;
       }
-
       .welcome-orb h2 {
         font-weight: 900;
         font-size: 2.5rem;
@@ -334,24 +293,20 @@
         color: var(--text-dark);
         margin-bottom: 0.5rem;
       }
-
       .welcome-orb p {
         color: var(--text-soft);
         font-size: 1.1rem;
       }
-
-      /* Stats - circular design */
       .stats-orbit {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 1.5rem;
         margin-bottom: 2.5rem;
       }
-
       .stat-orbit-card {
         background: var(--bg-panel);
         backdrop-filter: blur(8px);
-        border-radius: 50% 50% 40% 60% / 50% 45% 55% 50%;
+        border-radius: 50% 50% 40% 60%/50% 45% 55% 50%;
         padding: 2rem;
         box-shadow: var(--card-shadow);
         border: var(--border-light);
@@ -359,7 +314,6 @@
         transition: 0.3s;
         animation: orbit-float 6s infinite ease-in-out;
       }
-
       .stat-orbit-card:nth-child(1) {
         animation-delay: 0s;
       }
@@ -372,7 +326,6 @@
       .stat-orbit-card:nth-child(4) {
         animation-delay: -4.5s;
       }
-
       @keyframes orbit-float {
         0%,
         100% {
@@ -382,12 +335,10 @@
           transform: translateY(-10px) rotate(2deg);
         }
       }
-
       .stat-orbit-card:hover {
-        border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%;
+        border-radius: 40% 60% 30% 70%/60% 40% 60% 40%;
         transform: scale(1.05) !important;
       }
-
       .stat-orb-icon {
         width: 70px;
         height: 70px;
@@ -398,7 +349,6 @@
         font-size: 2.2rem;
         margin: 0 auto 1.2rem;
       }
-
       .stat-orb-icon.blue {
         background: #2563eb20;
         color: #2563eb;
@@ -415,7 +365,6 @@
         background: #7c3aed20;
         color: #7c3aed;
       }
-
       .stat-orb-number {
         font-size: 2.5rem;
         font-weight: 900;
@@ -423,101 +372,16 @@
         margin-bottom: 0.3rem;
         color: var(--text-dark);
       }
-
       .stat-orb-label {
         color: var(--text-soft);
         font-weight: 500;
       }
-
-      /* Split cards */
       .dashboard-split {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1.5rem;
       }
-
-      /* Recent activity timeline */
-      .timeline-card {
-        background: var(--bg-panel);
-        backdrop-filter: blur(8px);
-        border-radius: 70px;
-        padding: 2rem;
-        box-shadow: var(--card-shadow);
-        border: var(--border-light);
-      }
-
-      .timeline-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-      }
-
-      .timeline-header h5 {
-        font-weight: 900;
-        font-size: 1.5rem;
-        color: var(--text-dark);
-        margin: 0;
-      }
-
-      .timeline-header a {
-        color: var(--accent-1);
-        text-decoration: none;
-        font-weight: 600;
-        padding: 0.5rem 1.2rem;
-        border-radius: 60px;
-        background: color-mix(in srgb, var(--accent-1) 8%, transparent);
-        transition: 0.2s;
-      }
-
-      .timeline-header a:hover {
-        background: var(--accent-1);
-        color: white;
-      }
-
-      .timeline-item {
-        display: flex;
-        gap: 1rem;
-        padding: 1rem 0;
-        border-bottom: 2px dotted var(--border-light);
-      }
-
-      .timeline-item:last-child {
-        border-bottom: none;
-      }
-
-      .timeline-dot {
-        width: 40px;
-        height: 40px;
-        border-radius: 50% 50% 40% 60% / 50% 45% 55% 50%;
-        background: color-mix(in srgb, var(--accent-1) 15%, transparent);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--accent-1);
-      }
-
-      .timeline-content {
-        flex: 1;
-      }
-
-      .timeline-content strong {
-        color: var(--text-dark);
-        font-size: 1rem;
-      }
-
-      .timeline-content .company {
-        color: var(--text-soft);
-        font-size: 0.9rem;
-        display: block;
-      }
-
-      .timeline-status {
-        display: flex;
-        align-items: center;
-      }
-
-      /* Recommendations - grid */
+      .timeline-card,
       .recommendations-card {
         background: var(--bg-panel);
         backdrop-filter: blur(8px);
@@ -526,21 +390,21 @@
         box-shadow: var(--card-shadow);
         border: var(--border-light);
       }
-
+      .timeline-header,
       .rec-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 2rem;
       }
-
+      .timeline-header h5,
       .rec-header h5 {
         font-weight: 900;
         font-size: 1.5rem;
         color: var(--text-dark);
         margin: 0;
       }
-
+      .timeline-header a,
       .rec-header a {
         color: var(--accent-1);
         text-decoration: none;
@@ -550,18 +414,83 @@
         background: color-mix(in srgb, var(--accent-1) 8%, transparent);
         transition: 0.2s;
       }
-
+      .timeline-header a:hover,
       .rec-header a:hover {
         background: var(--accent-1);
         color: white;
       }
-
+      .timeline-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 2px dotted var(--border-light);
+      }
+      .timeline-item:last-child {
+        border-bottom: none;
+      }
+      .timeline-dot {
+        width: 40px;
+        height: 40px;
+        border-radius: 50% 50% 40% 60%/50% 45% 55% 50%;
+        background: color-mix(in srgb, var(--accent-1) 15%, transparent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-1);
+        flex-shrink: 0;
+      }
+      .timeline-content {
+        flex: 1;
+      }
+      .timeline-content strong {
+        color: var(--text-dark);
+        font-size: 1rem;
+      }
+      .timeline-content .company {
+        color: var(--text-soft);
+        font-size: 0.9rem;
+        display: block;
+      }
+      .timeline-status {
+        display: flex;
+        align-items: center;
+      }
+      .badge-cosmic {
+        padding: 0.5rem 1.2rem;
+        border-radius: 60px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        display: inline-block;
+      }
+      .badge-cosmic.warning {
+        background: #fef3c7;
+        color: #92400e;
+      }
+      .badge-cosmic.success {
+        background: #d1fae5;
+        color: #065f46;
+      }
+      .badge-cosmic.danger {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      body.dark .badge-cosmic.warning {
+        background: #92400e40;
+        color: #fbbf24;
+      }
+      body.dark .badge-cosmic.success {
+        background: #065f4640;
+        color: #6fcf97;
+      }
+      body.dark .badge-cosmic.danger {
+        background: #991b1b40;
+        color: #f87171;
+      }
       .rec-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
       }
-
       .rec-item {
         background: color-mix(in srgb, var(--accent-1) 5%, transparent);
         border-radius: 50px;
@@ -569,12 +498,10 @@
         border: var(--border-light);
         transition: 0.2s;
       }
-
       .rec-item:hover {
         transform: translateY(-3px);
         background: color-mix(in srgb, var(--accent-1) 10%, transparent);
       }
-
       .rec-badge {
         display: inline-block;
         padding: 0.2rem 0.8rem;
@@ -583,37 +510,31 @@
         font-weight: 700;
         margin-bottom: 0.8rem;
       }
-
       .rec-badge.primary {
         background: #6c47ff40;
         color: var(--accent-1);
       }
-
       .rec-badge.secondary {
         background: #ff4d9a40;
         color: #ff4d9a;
       }
-
       .rec-item h6 {
         font-size: 1rem;
         font-weight: 700;
         color: var(--text-dark);
         margin-bottom: 0.3rem;
       }
-
       .rec-company {
         color: var(--text-soft);
         font-size: 0.8rem;
         margin-bottom: 0.5rem;
       }
-
       .rec-meta {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-top: 0.5rem;
       }
-
       .rec-location {
         color: var(--text-soft);
         font-size: 0.8rem;
@@ -621,33 +542,33 @@
         align-items: center;
         gap: 0.2rem;
       }
-
       .rec-apply {
         color: var(--accent-1);
         font-size: 1.1rem;
         transition: 0.2s;
+        text-decoration: none;
       }
-
       .rec-apply:hover {
         transform: scale(1.2);
         color: var(--accent-2);
       }
-
-      /* Responsive */
+      .empty-msg {
+        color: var(--text-soft);
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 1.5rem 0;
+      }
       @media (max-width: 992px) {
         .stats-orbit {
           grid-template-columns: repeat(2, 1fr);
         }
-
         .dashboard-split {
           grid-template-columns: 1fr;
         }
-
         .profile-group {
           flex-direction: column;
           text-align: center;
         }
-
         .greeting {
           text-align: center;
         }
@@ -655,71 +576,55 @@
     </style>
   </head>
   <body>
-    <!-- Animated background blobs -->
     <div class="bg-blob bg-blob-1"></div>
     <div class="bg-blob bg-blob-2"></div>
     <div class="bg-blob bg-blob-3"></div>
-
-    <!-- Theme toggle -->
-    <div class="theme-orb" id="themeToggle">
-      <i class="bi bi-sun-fill"></i>
-    </div>
+    <div class="theme-orb" id="themeToggle"><i class="bi bi-sun-fill"></i></div>
 
     <div class="cosmic-container">
-      <!-- Header - more minimal -->
       <div class="cosmic-header">
-        <div class="logo-fusion">
+        <a href="{{ url_for('home') }}" class="logo-fusion">
           <div class="logo-morph">S</div>
           <span>stag.io</span>
-        </div>
+        </a>
         <div class="profile-group">
           <div class="greeting">
-            <div class="name">Ahmed Benali</div>
-            <div class="role">Computer Science Student</div>
+            <div class="name">{{ name }}</div>
+            <div class="role">{{ student.field_of_study or 'Student' }}</div>
           </div>
-          <div class="blob-avatar-large">AB</div>
+          <div class="blob-avatar-large">{{ avatar }}</div>
         </div>
       </div>
 
       <div class="row g-4">
-        <!-- Sidebar - floating pills -->
         <div class="col-lg-3">
           <div class="sidebar-floating">
             <a
               href="{{ url_for('student_dashboard') }}"
               class="nav-pill-cosmic active"
+              ><i class="bi bi-house-door"></i> Dashboard</a
             >
-              <i class="bi bi-house-door"></i>
-              Dashboard
-            </a>
-            <a href="{{ url_for('student_profile') }}" class="nav-pill-cosmic">
-              <i class="bi bi-person"></i>
-              My Profile
-            </a>
-            <a href="{{ url_for('student_search') }}" class="nav-pill-cosmic">
-              <i class="bi bi-search"></i>
-              Search Internships
-            </a>
-            <a href="{{ url_for('my_applications') }}" class="nav-pill-cosmic">
-              <i class="bi bi-file-text"></i>
-              My Applications
-            </a>
+            <a href="{{ url_for('student_profile') }}" class="nav-pill-cosmic"
+              ><i class="bi bi-person"></i> My Profile</a
+            >
+            <a href="{{ url_for('student_search') }}" class="nav-pill-cosmic"
+              ><i class="bi bi-search"></i> Search Internships</a
+            >
+            <a href="{{ url_for('my_applications') }}" class="nav-pill-cosmic"
+              ><i class="bi bi-file-text"></i> My Applications</a
+            >
             <a
               href="{{ url_for('logout') }}"
               class="nav-pill-cosmic text-danger"
+              ><i class="bi bi-box-arrow-right"></i> Logout</a
             >
-              <i class="bi bi-box-arrow-right"></i>
-              Logout
-            </a>
           </div>
         </div>
 
-        <!-- Main Content -->
         <div class="col-lg-9">
-          <!-- Welcome Orb -->
           <div class="welcome-orb">
             <div class="welcome-content">
-              <h2>welcome back, Ahmed 👋</h2>
+              <h2>welcome back, {{ student.first_name or 'Student' }} 👋</h2>
               <p class="mb-0">
                 Track your applications and discover new internship
                 opportunities
@@ -727,157 +632,101 @@
             </div>
           </div>
 
-          <!-- Stats Orbit -->
           <div class="stats-orbit">
             <div class="stat-orbit-card">
               <div class="stat-orb-icon blue">
                 <i class="bi bi-file-text"></i>
               </div>
-              <div class="stat-orb-number">5</div>
+              <div class="stat-orb-number">{{ stats.total }}</div>
               <div class="stat-orb-label">Applications Sent</div>
             </div>
-
             <div class="stat-orbit-card">
               <div class="stat-orb-icon yellow">
                 <i class="bi bi-clock-history"></i>
               </div>
-              <div class="stat-orb-number">3</div>
+              <div class="stat-orb-number">{{ stats.review }}</div>
               <div class="stat-orb-label">In Review</div>
             </div>
-
             <div class="stat-orbit-card">
               <div class="stat-orb-icon green">
                 <i class="bi bi-check-circle"></i>
               </div>
-              <div class="stat-orb-number">1</div>
+              <div class="stat-orb-number">{{ stats.accepted }}</div>
               <div class="stat-orb-label">Accepted</div>
             </div>
-
             <div class="stat-orbit-card">
               <div class="stat-orb-icon purple">
-                <i class="bi bi-graph-up"></i>
+                <i class="bi bi-briefcase"></i>
               </div>
-              <div class="stat-orb-number">24</div>
-              <div class="stat-orb-label">Profile Views</div>
+              <div class="stat-orb-number">{{ recent_internships|length }}</div>
+              <div class="stat-orb-label">New Offers</div>
             </div>
           </div>
 
-          <!-- Split Dashboard -->
           <div class="dashboard-split">
-            <!-- Recent Activity Timeline -->
             <div class="timeline-card">
               <div class="timeline-header">
                 <h5>recent activity</h5>
                 <a href="{{ url_for('my_applications') }}">view all</a>
               </div>
-
+              {% if recent_applications %} {% for app in recent_applications %}
               <div class="timeline-item">
-                <div class="timeline-dot">
-                  <i class="bi bi-briefcase"></i>
-                </div>
+                <div class="timeline-dot"><i class="bi bi-briefcase"></i></div>
                 <div class="timeline-content">
-                  <strong>Full Stack Developer</strong>
-                  <span class="company">TechCorp Algeria</span>
+                  <strong>{{ app.position }}</strong>
                 </div>
                 <div class="timeline-status">
-                  <span class="badge-cosmic warning">In Review</span>
-                </div>
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-dot">
-                  <i class="bi bi-briefcase"></i>
-                </div>
-                <div class="timeline-content">
-                  <strong>Frontend Developer</strong>
-                  <span class="company">InnovaSoft</span>
-                </div>
-                <div class="timeline-status">
+                  {% if app.status == 'Accepted' %}
                   <span class="badge-cosmic success">Accepted</span>
-                </div>
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-dot">
-                  <i class="bi bi-briefcase"></i>
-                </div>
-                <div class="timeline-content">
-                  <strong>Data Analyst</strong>
-                  <span class="company">DataSolutions</span>
-                </div>
-                <div class="timeline-status">
+                  {% elif app.status == 'Rejected' %}
+                  <span class="badge-cosmic danger">Rejected</span>
+                  {% else %}
                   <span class="badge-cosmic warning">In Review</span>
+                  {% endif %}
                 </div>
               </div>
+              {% endfor %} {% else %}
+              <p class="empty-msg">
+                No applications yet —
+                <a
+                  href="{{ url_for('student_search') }}"
+                  style="color: var(--accent-1)"
+                  >start browsing!</a
+                >
+              </p>
+              {% endif %}
             </div>
 
-            <!-- Quick Recommendations -->
             <div class="recommendations-card">
               <div class="rec-header">
                 <h5>quick picks</h5>
                 <a href="{{ url_for('student_search') }}">browse</a>
               </div>
-
               <div class="rec-grid">
-                <!-- Card 1 -->
+                {% if recent_internships %} {% for i in recent_internships %}
                 <div class="rec-item">
-                  <span class="rec-badge primary">Full-time</span>
-                  <h6>React Developer</h6>
-                  <div class="rec-company">AlgeriaTech</div>
+                  <span
+                    class="rec-badge {% if i.type == 'Part-time' %}secondary{% else %}primary{% endif %}"
+                    >{{ i.type }}</span
+                  >
+                  <h6>{{ i.title }}</h6>
+                  <div class="rec-company">
+                    {{ i.company_name or 'Company' }}
+                  </div>
                   <div class="rec-meta">
-                    <span class="rec-location">
-                      <i class="bi bi-geo-alt"></i> Alger
-                    </span>
-                    <a href="{{ url_for('student_search') }}" class="rec-apply">
-                      <i class="bi bi-arrow-right-circle"></i>
-                    </a>
+                    <span class="rec-location"
+                      ><i class="bi bi-geo-alt"></i> {{ i.location }}</span
+                    >
+                    <a href="{{ url_for('student_search') }}" class="rec-apply"
+                      ><i class="bi bi-arrow-right-circle"></i
+                    ></a>
                   </div>
                 </div>
-
-                <!-- Card 2 -->
-                <div class="rec-item">
-                  <span class="rec-badge primary">Full-time</span>
-                  <h6>Mobile Developer</h6>
-                  <div class="rec-company">SmartApps</div>
-                  <div class="rec-meta">
-                    <span class="rec-location">
-                      <i class="bi bi-geo-alt"></i> Oran
-                    </span>
-                    <a href="{{ url_for('student_search') }}" class="rec-apply">
-                      <i class="bi bi-arrow-right-circle"></i>
-                    </a>
-                  </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="rec-item">
-                  <span class="rec-badge secondary">Part-time</span>
-                  <h6>Backend Dev</h6>
-                  <div class="rec-company">CloudNine</div>
-                  <div class="rec-meta">
-                    <span class="rec-location">
-                      <i class="bi bi-geo-alt"></i> Constantine
-                    </span>
-                    <a href="{{ url_for('student_search') }}" class="rec-apply">
-                      <i class="bi bi-arrow-right-circle"></i>
-                    </a>
-                  </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="rec-item">
-                  <span class="rec-badge primary">Full-time</span>
-                  <h6>UI/UX Designer</h6>
-                  <div class="rec-company">DesignLab</div>
-                  <div class="rec-meta">
-                    <span class="rec-location">
-                      <i class="bi bi-geo-alt"></i> Blida
-                    </span>
-                    <a href="{{ url_for('student_search') }}" class="rec-apply">
-                      <i class="bi bi-arrow-right-circle"></i>
-                    </a>
-                  </div>
-                </div>
+                {% endfor %} {% else %}
+                <p class="empty-msg" style="grid-column: span 2">
+                  No offers available yet
+                </p>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -885,61 +734,18 @@
       </div>
     </div>
 
-    <!-- Keep existing badge styles for compatibility -->
-    <style>
-      .badge-cosmic {
-        padding: 0.5rem 1.2rem;
-        border-radius: 60px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        display: inline-block;
-      }
-
-      .badge-cosmic.warning {
-        background: #fef3c7;
-        color: #92400e;
-      }
-
-      .badge-cosmic.success {
-        background: #d1fae5;
-        color: #065f46;
-      }
-
-      body.dark .badge-cosmic.warning {
-        background: #92400e40;
-        color: #fbbf24;
-      }
-
-      body.dark .badge-cosmic.success {
-        background: #065f4640;
-        color: #6fcf97;
-      }
-    </style>
-
     <script>
-      // Theme toggle functionality
       const toggleBtn = document.getElementById("themeToggle");
-      const body = document.body;
       const icon = toggleBtn.querySelector("i");
-
-      function setTheme(theme) {
-        if (theme === "dark") {
-          body.classList.add("dark");
-          icon.className = "bi bi-moon-fill";
-        } else {
-          body.classList.remove("dark");
-          icon.className = "bi bi-sun-fill";
-        }
-        localStorage.setItem("stagio-theme", theme);
+      function setTheme(t) {
+        document.body.classList.toggle("dark", t === "dark");
+        icon.className = t === "dark" ? "bi bi-moon-fill" : "bi bi-sun-fill";
+        localStorage.setItem("stagio-theme", t);
       }
-
-      const saved = localStorage.getItem("stagio-theme") || "light";
-      setTheme(saved);
-
-      toggleBtn.addEventListener("click", () => {
-        const isDark = body.classList.contains("dark");
-        setTheme(isDark ? "light" : "dark");
-      });
+      setTheme(localStorage.getItem("stagio-theme") || "light");
+      toggleBtn.addEventListener("click", () =>
+        setTheme(document.body.classList.contains("dark") ? "light" : "dark"),
+      );
     </script>
   </body>
 </html>

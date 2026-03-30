@@ -4,18 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stag.io · cosmic login</title>
-    <!-- Bootstrap Icons only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <!-- Satoshi font -->
     <link
       href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* TOUS TES STYLES ICI (garde tout) */
       * {
         margin: 0;
         padding: 0;
@@ -59,7 +56,6 @@
         overflow-x: hidden;
       }
 
-      /* Cosmic background blobs */
       .bg-blob {
         position: fixed;
         width: 600px;
@@ -70,14 +66,12 @@
         filter: blur(60px);
         z-index: 0;
       }
-
       .bg-blob-1 {
         top: -200px;
         left: -200px;
         width: 700px;
         height: 700px;
       }
-
       .bg-blob-2 {
         bottom: -200px;
         right: -200px;
@@ -94,7 +88,6 @@
         padding: 2rem;
       }
 
-      /* Logo cosmic */
       .logo-cosmic {
         display: flex;
         align-items: center;
@@ -103,7 +96,6 @@
         margin-bottom: 2rem;
         text-decoration: none;
       }
-
       .logo-morph {
         width: 58px;
         height: 58px;
@@ -117,7 +109,6 @@
         font-weight: 900;
         font-size: 1.8rem;
       }
-
       .logo-cosmic span {
         font-weight: 900;
         font-size: 2.3rem;
@@ -127,7 +118,6 @@
         letter-spacing: -2px;
       }
 
-      /* Theme toggle small */
       .theme-orb-small {
         position: absolute;
         top: 2rem;
@@ -146,13 +136,11 @@
         backdrop-filter: blur(8px);
         z-index: 20;
       }
-
       .theme-orb-small:hover {
         background: var(--accent-1);
         color: white;
       }
 
-      /* Login card */
       .login-card {
         background: var(--bg-panel);
         backdrop-filter: blur(18px);
@@ -167,26 +155,58 @@
         text-align: center;
         margin-bottom: 2rem;
       }
-
       .login-header h3 {
         font-weight: 900;
         font-size: 2.2rem;
         letter-spacing: -1px;
         margin-bottom: 0.5rem;
       }
-
       .login-header p {
         color: var(--text-soft);
         font-size: 1rem;
       }
 
-      /* User type pills - blob style */
+      /* ── Flash messages — matches the design ── */
+      .flash-box {
+        border-radius: 20px;
+        padding: 0.8rem 1.2rem;
+        margin-bottom: 1.2rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-align: center;
+      }
+      .flash-danger {
+        background: #ff4d9a18;
+        border: 1px solid #ff4d9a55;
+        color: #d42e7a;
+      }
+      .flash-success {
+        background: #47ff8c18;
+        border: 1px solid #47ff8c55;
+        color: #1a9e50;
+      }
+      .flash-warning {
+        background: #ffb74718;
+        border: 1px solid #ffb74755;
+        color: #c47d00;
+      }
+      .flash-info {
+        background: #47c5ff18;
+        border: 1px solid #47c5ff55;
+        color: #0077aa;
+      }
+      body.dark .flash-danger {
+        color: #ff9acb;
+      }
+      body.dark .flash-success {
+        color: #6effb0;
+      }
+
       .user-type-pills {
         display: flex;
         gap: 0.8rem;
         margin-bottom: 2rem;
       }
-
       .type-pill {
         flex: 1;
         padding: 1rem;
@@ -199,19 +219,17 @@
         cursor: pointer;
         border: var(--border-light);
         backdrop-filter: blur(4px);
+        font-family: "Satoshi", sans-serif;
       }
-
       .type-pill.active {
         background: var(--accent-gradient);
         color: white;
         box-shadow: var(--glow);
       }
-
       .type-pill i {
         margin-right: 0.5rem;
       }
 
-      /* Form elements - blob style */
       .form-label {
         font-weight: 700;
         color: var(--text-dark);
@@ -228,17 +246,14 @@
         overflow: hidden;
         transition: 0.2s;
       }
-
       .input-blob-group:focus-within {
         box-shadow: var(--glow);
       }
-
       .input-icon {
         padding: 0 1rem;
         color: var(--accent-1);
         font-size: 1.2rem;
       }
-
       .input-blob {
         flex: 1;
         background: transparent;
@@ -248,11 +263,9 @@
         font-family: "Satoshi", sans-serif;
         font-size: 1rem;
       }
-
       .input-blob:focus {
         outline: none;
       }
-
       .input-blob::placeholder {
         color: var(--text-soft);
         opacity: 0.5;
@@ -266,30 +279,25 @@
         cursor: pointer;
         font-size: 1.2rem;
       }
-
       .toggle-password-blob:hover {
         color: var(--accent-1);
       }
 
-      /* Remember and forgot */
       .login-options {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin: 1.5rem 0;
       }
-
       .checkbox-blob {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         cursor: pointer;
       }
-
       .checkbox-blob input {
         display: none;
       }
-
       .check-custom {
         width: 22px;
         height: 22px;
@@ -299,7 +307,6 @@
         display: inline-block;
         position: relative;
       }
-
       .checkbox-blob input:checked + .check-custom::after {
         content: "✓";
         position: absolute;
@@ -309,18 +316,15 @@
         color: var(--accent-2);
         font-weight: bold;
       }
-
       .forgot-link {
         color: var(--accent-1);
         text-decoration: none;
         font-weight: 500;
       }
-
       .forgot-link:hover {
         text-decoration: underline;
       }
 
-      /* Submit button */
       .btn-login {
         width: 100%;
         padding: 1.2rem;
@@ -329,62 +333,82 @@
         color: white;
         font-weight: 700;
         font-size: 1.1rem;
+        font-family: "Satoshi", sans-serif;
         border-radius: 60px;
         cursor: pointer;
         transition: 0.2s;
         box-shadow: var(--glow);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
       }
-
-      .btn-login:hover {
+      .btn-login:hover:not(:disabled) {
         transform: scale(1.02);
       }
+      .btn-login:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
 
-      /* Footer links */
+      .btn-spinner {
+        display: none;
+        width: 18px;
+        height: 18px;
+        border: 2.5px solid rgba(255, 255, 255, 0.35);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+      }
+      .btn-login.loading .btn-text {
+        display: none;
+      }
+      .btn-login.loading .btn-spinner {
+        display: block;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
       .login-footer {
         text-align: center;
         margin-top: 1.5rem;
       }
-
       .login-footer a {
         color: var(--accent-1);
         text-decoration: none;
         font-weight: 500;
       }
-
       .login-footer a:hover {
         text-decoration: underline;
       }
-
       .back-link {
         display: inline-block;
         margin-top: 1rem;
         color: var(--text-soft);
         text-decoration: none;
       }
-
       .back-link i {
         margin-right: 0.5rem;
       }
-
       .back-link:hover {
         color: var(--accent-1);
       }
 
-      /* Responsive */
       @media (max-width: 500px) {
         .login-container {
           padding: 1rem;
         }
-
         .login-card {
           padding: 1.8rem;
           border-radius: 50px;
         }
-
         .user-type-pills {
           flex-direction: column;
         }
-
         .theme-orb-small {
           top: 1rem;
           right: 1rem;
@@ -393,45 +417,45 @@
     </style>
   </head>
   <body>
-    <!-- Background blobs -->
     <div class="bg-blob bg-blob-1"></div>
     <div class="bg-blob bg-blob-2"></div>
 
-    <!-- Theme toggle -->
     <div class="theme-orb-small" id="themeToggle">
       <i class="bi bi-sun-fill"></i>
     </div>
 
     <div class="login-container">
-      <!-- Logo - CHANGER ICI: lien vers home -->
       <a href="{{ url_for('home') }}" class="logo-cosmic">
         <div class="logo-morph">S</div>
         <span>stag.io</span>
       </a>
 
-      <!-- Login card -->
       <div class="login-card">
         <div class="login-header">
           <h3>welcome back</h3>
           <p>sign in to continue to your account</p>
         </div>
 
-        <!-- User type pills -->
+        <!-- ✅ Flask flash messages (e.g. "Invalid email or password") -->
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %}
+        <div class="flash-box flash-{{ category }}">{{ message }}</div>
+        {% endfor %} {% endif %} {% endwith %}
+
         <div class="user-type-pills">
-          <button id="studentBtn" class="type-pill active">
+          <button type="button" id="studentBtn" class="type-pill active">
             <i class="bi bi-person"></i> Student
           </button>
-          <button id="companyBtn" class="type-pill">
+          <button type="button" id="companyBtn" class="type-pill">
             <i class="bi bi-building"></i> Company
           </button>
-          <button id="adminBtn" class="type-pill">
+          <button type="button" id="adminBtn" class="type-pill">
             <i class="bi bi-shield"></i> Admin
           </button>
         </div>
 
-        <!-- Form - CHANGER ICI: method POST et action vers login -->
+        <!-- ✅ Submits directly to Flask /login — session works correctly -->
         <form id="loginForm" method="POST" action="{{ url_for('login') }}">
-          <!-- AJOUTER ICI: champ caché pour le type d'utilisateur -->
           <input
             type="hidden"
             id="userTypeInput"
@@ -439,7 +463,6 @@
             value="student"
           />
 
-          <!-- Email -->
           <div class="mb-4">
             <label class="form-label">Email Address</label>
             <div class="input-blob-group">
@@ -451,11 +474,11 @@
                 class="input-blob"
                 placeholder="your.email@university.dz"
                 required
+                autocomplete="email"
               />
             </div>
           </div>
 
-          <!-- Password -->
           <div class="mb-4">
             <label class="form-label">Password</label>
             <div class="input-blob-group">
@@ -467,6 +490,7 @@
                 class="input-blob"
                 placeholder="••••••••"
                 required
+                autocomplete="current-password"
               />
               <button
                 type="button"
@@ -478,7 +502,6 @@
             </div>
           </div>
 
-          <!-- Remember & Forgot -->
           <div class="login-options">
             <label class="checkbox-blob">
               <input type="checkbox" name="remember" />
@@ -488,11 +511,12 @@
             <a href="#" class="forgot-link">Forgot password?</a>
           </div>
 
-          <!-- Submit -->
-          <button type="submit" class="btn-login">Sign In</button>
+          <button type="submit" class="btn-login" id="submitBtn">
+            <span class="btn-text">Sign In</span>
+            <div class="btn-spinner"></div>
+          </button>
         </form>
 
-        <!-- Register link -->
         <div class="login-footer">
           Don't have an account?
           <a href="{{ url_for('register') }}">Create Account</a>
@@ -506,89 +530,72 @@
     </div>
 
     <script>
-      // User type switching
-      let userType = "student";
-
-      // Récupérer le type depuis l'URL si présent
-      const urlParams = new URLSearchParams(window.location.search);
-      const typeFromUrl = urlParams.get("type");
-
+      // ── User type pills ──
+      const userTypeInput = document.getElementById("userTypeInput");
       const emailInput = document.getElementById("emailInput");
       const studentBtn = document.getElementById("studentBtn");
       const companyBtn = document.getElementById("companyBtn");
       const adminBtn = document.getElementById("adminBtn");
-      const passwordInput = document.getElementById("passwordInput");
-      const togglePassword = document.getElementById("togglePassword");
-      const userTypeInput = document.getElementById("userTypeInput");
-
-      // Si type dans URL, activer le bon bouton
-      if (typeFromUrl === "admin") {
-        setUser("admin");
-      }
 
       function setUser(type) {
-        userType = type;
-        userTypeInput.value = type; // Met à jour le champ caché
-
-        // Reset all buttons
-        studentBtn.classList.remove("active");
-        companyBtn.classList.remove("active");
-        adminBtn.classList.remove("active");
-
-        if (type === "student") {
-          studentBtn.classList.add("active");
-          emailInput.placeholder = "your.email@university.dz";
-        } else if (type === "company") {
-          companyBtn.classList.add("active");
-          emailInput.placeholder = "your.email@company.com";
-        } else {
-          adminBtn.classList.add("active");
-          emailInput.placeholder = "admin@platform.com";
-        }
+        userTypeInput.value = type;
+        [studentBtn, companyBtn, adminBtn].forEach((b) =>
+          b.classList.remove("active"),
+        );
+        ({ student: studentBtn, company: companyBtn, admin: adminBtn })[
+          type
+        ].classList.add("active");
+        emailInput.placeholder = {
+          student: "your.email@university.dz",
+          company: "your.email@company.com",
+          admin: "admin@platform.com",
+        }[type];
       }
 
       studentBtn.onclick = () => setUser("student");
       companyBtn.onclick = () => setUser("company");
       adminBtn.onclick = () => setUser("admin");
 
-      // Toggle password visibility
-      togglePassword.onclick = () => {
-        const type = passwordInput.type === "password" ? "text" : "password";
-        passwordInput.type = type;
-        togglePassword.innerHTML =
-          type === "password"
-            ? '<i class="bi bi-eye"></i>'
-            : '<i class="bi bi-eye-slash"></i>';
+      const typeFromUrl = new URLSearchParams(window.location.search).get(
+        "type",
+      );
+      if (["student", "company", "admin"].includes(typeFromUrl))
+        setUser(typeFromUrl);
+
+      // ── Password toggle ──
+      const passwordInput = document.getElementById("passwordInput");
+      document.getElementById("togglePassword").onclick = () => {
+        const show = passwordInput.type === "password";
+        passwordInput.type = show ? "text" : "password";
+        document.querySelector("#togglePassword i").className = show
+          ? "bi bi-eye-slash"
+          : "bi bi-eye";
       };
 
-      // NE PAS BLOQUER LA SOUMISSION - laisser Flask gérer
-      // document.getElementById("loginForm").addEventListener("submit", function (e) {
-      //   e.preventDefault(); // ← SUPPRIME ÇA
-      //   ... ne pas mettre ...
-      // });
+      // ── Spinner on submit ──
+      // ✅ NO e.preventDefault() — form posts to Flask, session saves correctly
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function () {
+          const btn = document.getElementById("submitBtn");
+          btn.classList.add("loading");
+          btn.disabled = true;
+        });
 
-      // Theme toggle
+      // ── Theme toggle ──
       const toggleBtn = document.getElementById("themeToggle");
-      const body = document.body;
       const icon = toggleBtn.querySelector("i");
 
       function setTheme(theme) {
-        if (theme === "dark") {
-          body.classList.add("dark");
-          icon.className = "bi bi-moon-fill";
-        } else {
-          body.classList.remove("dark");
-          icon.className = "bi bi-sun-fill";
-        }
+        document.body.classList.toggle("dark", theme === "dark");
+        icon.className =
+          theme === "dark" ? "bi bi-moon-fill" : "bi bi-sun-fill";
         localStorage.setItem("stagio-theme", theme);
       }
 
-      const saved = localStorage.getItem("stagio-theme") || "light";
-      setTheme(saved);
-
+      setTheme(localStorage.getItem("stagio-theme") || "light");
       toggleBtn.addEventListener("click", () => {
-        const isDark = body.classList.contains("dark");
-        setTheme(isDark ? "light" : "dark");
+        setTheme(document.body.classList.contains("dark") ? "light" : "dark");
       });
     </script>
   </body>

@@ -4,12 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Profile · Stag.io cosmic</title>
-    <!-- Bootstrap Icons only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <!-- Satoshi font -->
     <link
       href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap"
       rel="stylesheet"
@@ -20,7 +18,6 @@
         padding: 0;
         box-sizing: border-box;
       }
-
       :root {
         --bg-main: #f2f0f5;
         --bg-panel: #ffffffd9;
@@ -34,7 +31,6 @@
         --border-light: 1px solid rgba(255, 255, 255, 0.5);
         --glow: 0 15px 30px -10px #6c47ff80;
       }
-
       body.dark {
         --bg-main: #12101c;
         --bg-panel: #1d1a2bd9;
@@ -45,7 +41,6 @@
         --card-shadow: 0 30px 50px -25px #010014, 0 0 0 1px #ffffff0d;
         --border-light: 1px solid #ffffff12;
       }
-
       body {
         background: var(--bg-main);
         font-family: "Satoshi", sans-serif;
@@ -54,20 +49,17 @@
         position: relative;
         overflow-x: hidden;
       }
-
-      /* Animated background blobs */
       .bg-blob {
         position: fixed;
         width: 600px;
         height: 600px;
-        border-radius: 60% 40% 50% 50% / 45% 50% 50% 55%;
+        border-radius: 60% 40% 50% 50%/45% 50% 50% 55%;
         background: var(--accent-gradient);
         opacity: 0.08;
         filter: blur(60px);
         z-index: 0;
         animation: float 20s infinite ease-in-out;
       }
-
       .bg-blob-1 {
         top: -200px;
         left: -100px;
@@ -75,7 +67,6 @@
         height: 700px;
         animation-delay: -5s;
       }
-
       .bg-blob-2 {
         bottom: -200px;
         right: -100px;
@@ -84,7 +75,6 @@
         background: linear-gradient(145deg, #ff4d9a, #6c47ff);
         animation-delay: -10s;
       }
-
       .bg-blob-3 {
         top: 50%;
         left: 50%;
@@ -94,7 +84,6 @@
         opacity: 0.05;
         animation: pulse 15s infinite ease-in-out;
       }
-
       @keyframes float {
         0%,
         100% {
@@ -107,7 +96,6 @@
           transform: translate(-20px, 20px) rotate(-5deg);
         }
       }
-
       @keyframes pulse {
         0%,
         100% {
@@ -117,8 +105,6 @@
           transform: translate(-50%, -50%) scale(1.1);
         }
       }
-
-      /* Main container */
       .cosmic-container {
         position: relative;
         z-index: 10;
@@ -126,8 +112,6 @@
         margin: 0 auto;
         padding: 1.5rem;
       }
-
-      /* Theme toggle */
       .theme-orb {
         position: fixed;
         bottom: 2rem;
@@ -147,12 +131,9 @@
         box-shadow: var(--card-shadow);
         z-index: 100;
       }
-
       .theme-orb:hover {
         transform: scale(1.1) rotate(15deg);
       }
-
-      /* Header - minimal like dashboard */
       .cosmic-header {
         display: flex;
         align-items: center;
@@ -160,18 +141,17 @@
         margin-bottom: 3rem;
         padding: 0.5rem 0;
       }
-
       .logo-fusion {
         display: flex;
         align-items: center;
         gap: 12px;
+        text-decoration: none;
       }
-
       .logo-morph {
         width: 48px;
         height: 48px;
         background: var(--accent-gradient);
-        border-radius: 35% 65% 70% 30% / 44% 30% 70% 56%;
+        border-radius: 35% 65% 70% 30%/44% 30% 70% 56%;
         box-shadow: var(--glow);
         display: flex;
         align-items: center;
@@ -181,17 +161,15 @@
         font-size: 1.5rem;
         animation: morph 8s infinite ease-in-out;
       }
-
       @keyframes morph {
         0%,
         100% {
-          border-radius: 35% 65% 70% 30% / 44% 30% 70% 56%;
+          border-radius: 35% 65% 70% 30%/44% 30% 70% 56%;
         }
         50% {
-          border-radius: 60% 40% 30% 70% / 30% 60% 40% 70%;
+          border-radius: 60% 40% 30% 70%/30% 60% 40% 70%;
         }
       }
-
       .logo-fusion span {
         font-weight: 900;
         font-size: 2rem;
@@ -200,33 +178,28 @@
         -webkit-text-fill-color: transparent;
         letter-spacing: -2px;
       }
-
       .profile-group {
         display: flex;
         align-items: center;
         gap: 1.5rem;
       }
-
       .greeting {
         text-align: right;
       }
-
       .greeting .name {
         font-weight: 900;
         font-size: 1.2rem;
         color: var(--text-dark);
       }
-
       .greeting .role {
         color: var(--text-soft);
         font-size: 0.9rem;
       }
-
       .blob-avatar-large {
         width: 60px;
         height: 60px;
         background: var(--accent-gradient);
-        border-radius: 45% 55% 64% 36% / 48% 41% 59% 52%;
+        border-radius: 45% 55% 64% 36%/48% 41% 59% 52%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -235,8 +208,6 @@
         font-size: 1.5rem;
         box-shadow: var(--glow);
       }
-
-      /* Sidebar - floating pills */
       .sidebar-floating {
         position: sticky;
         top: 2rem;
@@ -244,7 +215,6 @@
         flex-direction: column;
         gap: 0.8rem;
       }
-
       .nav-pill-cosmic {
         display: flex;
         align-items: center;
@@ -260,45 +230,37 @@
         font-weight: 500;
         box-shadow: var(--card-shadow);
       }
-
       .nav-pill-cosmic i {
         font-size: 1.3rem;
       }
-
       .nav-pill-cosmic:hover {
         transform: translateX(10px);
         background: var(--accent-gradient);
         color: white;
         border-color: transparent;
       }
-
       .nav-pill-cosmic.active {
         background: var(--accent-gradient);
         color: white;
         box-shadow: var(--glow);
       }
-
       .nav-pill-cosmic.text-danger {
         color: #ff4d9a;
       }
-
       .nav-pill-cosmic.text-danger:hover {
         background: #ff4d9a;
         color: white;
       }
-
-      /* Profile orb - main content area */
       .profile-orb {
         background: var(--bg-panel);
         backdrop-filter: blur(12px);
-        border-radius: 70px 70px 70px 70px / 60px 60px 60px 60px;
+        border-radius: 70px;
         padding: 2.5rem;
         box-shadow: var(--card-shadow);
         border: var(--border-light);
         position: relative;
         overflow: hidden;
       }
-
       .profile-orb::before {
         content: "";
         position: absolute;
@@ -312,7 +274,6 @@
         animation: rotate 30s linear infinite;
         z-index: 0;
       }
-
       @keyframes rotate {
         from {
           transform: rotate(0deg);
@@ -321,38 +282,32 @@
           transform: rotate(360deg);
         }
       }
-
       .profile-content {
         position: relative;
         z-index: 2;
       }
-
-      /* Profile header */
       .profile-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 2.5rem;
       }
-
       .profile-title {
         display: flex;
         align-items: center;
         gap: 1rem;
       }
-
       .profile-title-icon {
         width: 60px;
         height: 60px;
         background: color-mix(in srgb, var(--accent-1) 15%, transparent);
-        border-radius: 50% 50% 40% 60% / 50% 45% 55% 50%;
+        border-radius: 50% 50% 40% 60%/50% 45% 55% 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 2rem;
         color: var(--accent-1);
       }
-
       .profile-title h1 {
         font-weight: 900;
         font-size: 2.2rem;
@@ -360,8 +315,30 @@
         color: var(--text-dark);
         margin: 0;
       }
-
-      /* Save button */
+      .flash-box {
+        border-radius: 20px;
+        padding: 0.8rem 1.2rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-align: center;
+      }
+      .flash-danger {
+        background: #ff4d9a18;
+        border: 1px solid #ff4d9a55;
+        color: #d42e7a;
+      }
+      .flash-success {
+        background: #47ff8c18;
+        border: 1px solid #47ff8c55;
+        color: #1a9e50;
+      }
+      body.dark .flash-danger {
+        color: #ff9acb;
+      }
+      body.dark .flash-success {
+        color: #6effb0;
+      }
       .btn-save-cosmic {
         display: flex;
         align-items: center;
@@ -373,20 +350,41 @@
         border-radius: 60px;
         font-weight: 700;
         font-size: 1rem;
+        font-family: "Satoshi", sans-serif;
         cursor: pointer;
         transition: 0.2s;
         box-shadow: var(--glow);
       }
-
-      .btn-save-cosmic:hover {
+      .btn-save-cosmic:hover:not(:disabled) {
         transform: scale(1.02);
       }
-
-      /* Section styling */
+      .btn-save-cosmic:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+      .btn-spinner {
+        display: none;
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+      }
+      .btn-save-cosmic.loading .btn-text {
+        display: none;
+      }
+      .btn-save-cosmic.loading .btn-spinner {
+        display: block;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
       .profile-section {
         margin-bottom: 2.5rem;
       }
-
       .section-title-cosmic {
         font-size: 1.3rem;
         font-weight: 900;
@@ -396,27 +394,21 @@
         align-items: center;
         gap: 0.8rem;
       }
-
       .section-title-cosmic i {
         color: var(--accent-1);
         font-size: 1.4rem;
       }
-
-      /* Form elements */
       .form-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
       }
-
       .form-group {
         margin-bottom: 1.2rem;
       }
-
       .form-group.full-width {
         grid-column: span 2;
       }
-
       .form-label-cosmic {
         display: block;
         font-weight: 700;
@@ -424,7 +416,6 @@
         margin-bottom: 0.5rem;
         font-size: 0.9rem;
       }
-
       .input-blob-group {
         display: flex;
         align-items: center;
@@ -434,17 +425,14 @@
         overflow: hidden;
         transition: 0.2s;
       }
-
       .input-blob-group:focus-within {
         box-shadow: var(--glow);
       }
-
       .input-icon {
         padding: 0 1rem;
         color: var(--accent-1);
         font-size: 1.1rem;
       }
-
       .input-blob {
         flex: 1;
         background: transparent;
@@ -455,16 +443,17 @@
         font-size: 1rem;
         width: 100%;
       }
-
       .input-blob:focus {
         outline: none;
       }
-
       .input-blob::placeholder {
         color: var(--text-soft);
         opacity: 0.5;
       }
-
+      .input-blob:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
       select.input-blob {
         appearance: none;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c47ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
@@ -472,35 +461,30 @@
         background-position: right 1rem center;
         padding-right: 2.5rem;
       }
-
       textarea.input-blob {
         min-height: 100px;
         resize: vertical;
         padding: 1rem;
+        border-radius: 24px;
       }
-
-      /* Divider */
       .cosmic-divider {
         border: none;
         border-top: 2px dotted var(--border-light);
         margin: 2rem 0;
       }
-
-      /* Skills section - reimagined */
       .skills-cosmic {
         background: color-mix(in srgb, var(--accent-1) 3%, transparent);
         border-radius: 60px;
         padding: 1.5rem;
         border: var(--border-light);
       }
-
       .skills-container-cosmic {
         display: flex;
         flex-wrap: wrap;
         gap: 0.8rem;
         margin-bottom: 1.5rem;
+        min-height: 40px;
       }
-
       .skill-tag-cosmic {
         background: var(--bg-panel);
         color: var(--accent-1);
@@ -515,11 +499,9 @@
         box-shadow: var(--card-shadow);
         transition: 0.2s;
       }
-
       .skill-tag-cosmic:hover {
         transform: translateY(-2px);
       }
-
       .skill-tag-cosmic button {
         background: none;
         border: none;
@@ -530,16 +512,13 @@
         padding: 0;
         font-size: 1.1rem;
       }
-
       .skill-tag-cosmic button:hover {
         color: var(--accent-2);
       }
-
       .add-skill-group {
         display: flex;
         gap: 1rem;
       }
-
       .btn-add-cosmic {
         display: flex;
         align-items: center;
@@ -553,19 +532,16 @@
         cursor: pointer;
         transition: 0.2s;
         white-space: nowrap;
+        font-family: "Satoshi", sans-serif;
       }
-
       .btn-add-cosmic:hover {
         transform: scale(1.02);
       }
-
-      /* Social links - card style */
       .social-links-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
       }
-
       .social-link-card {
         background: color-mix(in srgb, var(--accent-1) 5%, transparent);
         border-radius: 50px;
@@ -573,32 +549,27 @@
         border: var(--border-light);
         transition: 0.2s;
       }
-
       .social-link-card:hover {
         transform: translateY(-3px);
         background: color-mix(in srgb, var(--accent-1) 10%, transparent);
       }
-
       .social-link-card i {
         font-size: 1.5rem;
         color: var(--accent-1);
         margin-bottom: 0.5rem;
       }
-
       .social-link-card span {
         display: block;
         font-weight: 700;
         color: var(--text-dark);
         margin-bottom: 0.3rem;
       }
-
       .social-link-card small {
         color: var(--text-soft);
         font-size: 0.8rem;
         display: block;
         margin-bottom: 1rem;
       }
-
       .social-input {
         background: transparent;
         border: none;
@@ -608,13 +579,10 @@
         color: var(--text-dark);
         font-family: "Satoshi", sans-serif;
       }
-
       .social-input:focus {
         outline: none;
         border-bottom-color: var(--accent-1);
       }
-
-      /* Upload area - reimagined */
       .upload-orb {
         background: color-mix(in srgb, var(--accent-1) 5%, transparent);
         border-radius: 70px;
@@ -624,8 +592,8 @@
         transition: 0.2s;
         position: relative;
         overflow: hidden;
+        cursor: pointer;
       }
-
       .upload-orb::before {
         content: "";
         position: absolute;
@@ -638,11 +606,9 @@
         border-radius: 40%;
         animation: rotate 20s linear infinite;
       }
-
       .upload-orb:hover {
         border-color: var(--accent-1);
       }
-
       .upload-icon {
         font-size: 4rem;
         color: var(--accent-1);
@@ -650,7 +616,6 @@
         position: relative;
         z-index: 2;
       }
-
       .upload-text {
         color: var(--text-dark);
         font-weight: 700;
@@ -658,7 +623,6 @@
         position: relative;
         z-index: 2;
       }
-
       .upload-hint {
         color: var(--text-soft);
         font-size: 0.85rem;
@@ -666,7 +630,14 @@
         position: relative;
         z-index: 2;
       }
-
+      .cv-current {
+        color: var(--accent-1);
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+        position: relative;
+        z-index: 2;
+      }
       .btn-upload-cosmic {
         padding: 1rem 2.5rem;
         background: var(--accent-gradient);
@@ -678,38 +649,31 @@
         transition: 0.2s;
         position: relative;
         z-index: 2;
+        font-family: "Satoshi", sans-serif;
       }
-
       .btn-upload-cosmic:hover {
         transform: scale(1.02);
         box-shadow: var(--glow);
       }
-
-      /* Responsive */
       @media (max-width: 992px) {
         .form-grid {
           grid-template-columns: 1fr;
         }
-
         .form-group.full-width {
           grid-column: span 1;
         }
-
         .profile-group {
           flex-direction: column;
           gap: 0.5rem;
         }
-
         .greeting {
           text-align: center;
         }
-
         .profile-header {
           flex-direction: column;
           gap: 1rem;
           align-items: start;
         }
-
         .social-links-grid {
           grid-template-columns: 1fr;
         }
@@ -717,73 +681,60 @@
     </style>
   </head>
   <body>
-    <!-- Animated background blobs -->
     <div class="bg-blob bg-blob-1"></div>
     <div class="bg-blob bg-blob-2"></div>
     <div class="bg-blob bg-blob-3"></div>
-
-    <!-- Theme toggle -->
-    <div class="theme-orb" id="themeToggle">
-      <i class="bi bi-sun-fill"></i>
-    </div>
-
+    <div class="theme-orb" id="themeToggle"><i class="bi bi-sun-fill"></i></div>
     <div class="cosmic-container">
-      <!-- Header - minimal like dashboard -->
       <div class="cosmic-header">
-        <div class="logo-fusion">
-          <div class="logo-morph">S</div>
-          <span>stag.io</span>
-        </div>
+        <a href="{{ url_for('home') }}" class="logo-fusion"
+          ><div class="logo-morph">S</div>
+          <span>stag.io</span></a
+        >
         <div class="profile-group">
           <div class="greeting">
-            <div class="name">Ahmed Benali</div>
-            <div class="role">Computer Science Student</div>
+            <div class="name">
+              {{ student.first_name }} {{ student.last_name }}
+            </div>
+            <div class="role">{{ student.field_of_study or 'Student' }}</div>
           </div>
-          <div class="blob-avatar-large">AB</div>
+          <div class="blob-avatar-large">{{ avatar_initials }}</div>
         </div>
       </div>
 
       <div class="row g-4">
-        <!-- Sidebar - floating pills -->
         <div class="col-lg-3">
           <div class="sidebar-floating">
-            <a
-              href="{{ url_for('student_dashboard') }}"
-              class="nav-pill-cosmic"
+            <a href="{{ url_for('student_dashboard') }}" class="nav-pill-cosmic"
+              ><i class="bi bi-house-door"></i> Dashboard</a
             >
-              <i class="bi bi-house-door"></i>
-              Dashboard
-            </a>
             <a
               href="{{ url_for('student_profile') }}"
               class="nav-pill-cosmic active"
+              ><i class="bi bi-person"></i> My Profile</a
             >
-              <i class="bi bi-person"></i>
-              My Profile
-            </a>
-            <a href="{{ url_for('student_search') }}" class="nav-pill-cosmic">
-              <i class="bi bi-search"></i>
-              Search Internships
-            </a>
-            <a href="{{ url_for('my_applications') }}" class="nav-pill-cosmic">
-              <i class="bi bi-file-text"></i>
-              My Applications
-            </a>
+            <a href="{{ url_for('student_search') }}" class="nav-pill-cosmic"
+              ><i class="bi bi-search"></i> Search Internships</a
+            >
+            <a href="{{ url_for('my_applications') }}" class="nav-pill-cosmic"
+              ><i class="bi bi-file-text"></i> My Applications</a
+            >
             <a
               href="{{ url_for('logout') }}"
               class="nav-pill-cosmic text-danger"
+              ><i class="bi bi-box-arrow-right"></i> Logout</a
             >
-              <i class="bi bi-box-arrow-right"></i>
-              Logout
-            </a>
           </div>
         </div>
 
-        <!-- Main Content -->
         <div class="col-lg-9">
           <div class="profile-orb">
             <div class="profile-content">
-              <!-- Header with Save Button -->
+              {% with messages = get_flashed_messages(with_categories=true) %}{%
+              if messages %}{% for category, message in messages %}
+              <div class="flash-box flash-{{ category }}">{{ message }}</div>
+              {% endfor %}{% endif %}{% endwith %}
+
               <div class="profile-header">
                 <div class="profile-title">
                   <div class="profile-title-icon">
@@ -791,340 +742,343 @@
                   </div>
                   <h1>my profile</h1>
                 </div>
-                <button class="btn-save-cosmic">
-                  <i class="bi bi-save"></i>
-                  Save Changes
+                <button
+                  class="btn-save-cosmic"
+                  id="saveBtn"
+                  type="submit"
+                  form="profileForm"
+                >
+                  <span class="btn-text"
+                    ><i class="bi bi-save"></i> Save Changes</span
+                  >
+                  <div class="btn-spinner"></div>
                 </button>
               </div>
 
-              <!-- Personal Information -->
-              <section class="profile-section">
-                <div class="section-title-cosmic">
-                  <i class="bi bi-info-circle"></i>
-                  personal information
-                </div>
-                <div class="form-grid">
-                  <div class="form-group">
-                    <label class="form-label-cosmic">First Name</label>
-                    <div class="input-blob-group">
-                      <span class="input-icon"
-                        ><i class="bi bi-person"></i
-                      ></span>
-                      <input type="text" class="input-blob" value="Ahmed" />
+              <form
+                id="profileForm"
+                method="POST"
+                action="{{ url_for('student_profile_edit') }}"
+                enctype="multipart/form-data"
+              >
+                <section class="profile-section">
+                  <div class="section-title-cosmic">
+                    <i class="bi bi-info-circle"></i> personal information
+                  </div>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label class="form-label-cosmic">First Name</label>
+                      <div class="input-blob-group">
+                        <span class="input-icon"
+                          ><i class="bi bi-person"></i></span
+                        ><input
+                          type="text"
+                          name="first_name"
+                          class="input-blob"
+                          value="{{ student.first_name or '' }}"
+                          placeholder="First name"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label-cosmic">Last Name</label>
+                      <div class="input-blob-group">
+                        <span class="input-icon"
+                          ><i class="bi bi-person"></i></span
+                        ><input
+                          type="text"
+                          name="last_name"
+                          class="input-blob"
+                          value="{{ student.last_name or '' }}"
+                          placeholder="Last name"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label-cosmic">University Email</label>
+                      <div class="input-blob-group">
+                        <span class="input-icon"
+                          ><i class="bi bi-envelope"></i></span
+                        ><input
+                          type="email"
+                          class="input-blob"
+                          value="{{ user.email or '' }}"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label-cosmic">Phone Number</label>
+                      <div class="input-blob-group">
+                        <span class="input-icon"
+                          ><i class="bi bi-phone"></i></span
+                        ><input
+                          type="tel"
+                          name="phone"
+                          class="input-blob"
+                          value="{{ user.phoneNumber or '' }}"
+                          placeholder="0555 12 34 56"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group full-width">
+                      <label class="form-label-cosmic">Bio</label>
+                      <textarea name="bio" rows="4" class="input-blob">
+{{ student.bio or '' }}</textarea
+                      >
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="form-label-cosmic">Last Name</label>
-                    <div class="input-blob-group">
-                      <span class="input-icon"
-                        ><i class="bi bi-person"></i
-                      ></span>
-                      <input type="text" class="input-blob" value="Benali" />
+                </section>
+
+                <div class="cosmic-divider"></div>
+
+                <section class="profile-section">
+                  <div class="section-title-cosmic">
+                    <i class="bi bi-mortarboard"></i> education
+                  </div>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label class="form-label-cosmic">University</label>
+                      <div class="input-blob-group">
+                        <span class="input-icon"
+                          ><i class="bi bi-building"></i></span
+                        ><input
+                          type="text"
+                          name="university"
+                          class="input-blob"
+                          value="{{ student.university or '' }}"
+                          placeholder="Your university"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label-cosmic">Field of Study</label>
+                      <div class="input-blob-group">
+                        <span class="input-icon"
+                          ><i class="bi bi-book"></i></span
+                        ><input
+                          type="text"
+                          name="field_of_study"
+                          class="input-blob"
+                          value="{{ student.field_of_study or '' }}"
+                          placeholder="e.g. Computer Science"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label-cosmic">Degree</label>
+                      <div class="input-blob-group">
+                        <span class="input-icon"
+                          ><i class="bi bi-award"></i
+                        ></span>
+                        <select name="degree" class="input-blob">
+                          {{ degree_options }}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label-cosmic">Year</label>
+                      <div class="input-blob-group">
+                        <span class="input-icon"
+                          ><i class="bi bi-calendar"></i
+                        ></span>
+                        <select name="year" class="input-blob">
+                          {{ year_options }}
+                        </select>
+                      </div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="form-label-cosmic">University Email</label>
-                    <div class="input-blob-group">
-                      <span class="input-icon"
-                        ><i class="bi bi-envelope"></i
-                      ></span>
-                      <input
-                        type="email"
-                        class="input-blob"
-                        value="ahmed.benali@university.dz"
+                </section>
+
+                <div class="cosmic-divider"></div>
+
+                <section class="profile-section">
+                  <div class="section-title-cosmic">
+                    <i class="bi bi-code-square"></i> technical skills
+                  </div>
+                  <div class="skills-cosmic">
+                    <div
+                      class="skills-container-cosmic"
+                      id="skillsContainer"
+                    ></div>
+                    <input
+                      type="hidden"
+                      name="skills"
+                      id="skillsInput"
+                      value="{{ skills_json }}"
+                    />
+                    <div class="add-skill-group">
+                      <div class="input-blob-group" style="flex: 1">
+                        <span class="input-icon"
+                          ><i class="bi bi-plus-circle"></i></span
+                        ><input
+                          type="text"
+                          id="newSkillInput"
+                          class="input-blob"
+                          placeholder="Add a skill (e.g., React, Python)"
+                          onkeydown="
+                            if (event.key === 'Enter') {
+                              event.preventDefault();
+                              addSkill();
+                            }
+                          "
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        class="btn-add-cosmic"
+                        onclick="addSkill()"
+                      >
+                        <i class="bi bi-plus"></i> Add
+                      </button>
+                    </div>
+                  </div>
+                </section>
+
+                <div class="cosmic-divider"></div>
+
+                <section class="profile-section">
+                  <div class="section-title-cosmic">
+                    <i class="bi bi-share"></i> portfolio & social
+                  </div>
+                  <div class="social-links-grid">
+                    <div class="social-link-card">
+                      <i class="bi bi-github"></i><span>GitHub</span
+                      ><small>Your repositories</small
+                      ><input
+                        type="url"
+                        name="github_link"
+                        class="social-input"
+                        value="{{ student.github_link or '' }}"
+                        placeholder="github.com/username"
+                      />
+                    </div>
+                    <div class="social-link-card">
+                      <i class="bi bi-linkedin"></i><span>LinkedIn</span
+                      ><small>Professional network</small
+                      ><input
+                        type="url"
+                        name="linkedin"
+                        class="social-input"
+                        value="{{ student.linkedin or '' }}"
+                        placeholder="linkedin.com/in/username"
+                      />
+                    </div>
+                    <div class="social-link-card">
+                      <i class="bi bi-briefcase"></i><span>Portfolio</span
+                      ><small>Personal website</small
+                      ><input
+                        type="url"
+                        name="portfolio_link"
+                        class="social-input"
+                        value="{{ student.portfolio_link or '' }}"
+                        placeholder="yourportfolio.com"
                       />
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="form-label-cosmic">Phone Number</label>
-                    <div class="input-blob-group">
-                      <span class="input-icon"
-                        ><i class="bi bi-phone"></i
-                      ></span>
-                      <input
-                        type="tel"
-                        class="input-blob"
-                        value="0555 12 34 56"
-                      />
-                    </div>
+                </section>
+
+                <div class="cosmic-divider"></div>
+
+                <section>
+                  <div class="section-title-cosmic">
+                    <i class="bi bi-file-earmark-text"></i> resume/cv
                   </div>
-                  <div class="form-group full-width">
-                    <label class="form-label-cosmic">Bio</label>
-                    <textarea rows="4" class="input-blob">
-Computer Science student passionate about web development and software engineering. Looking for internship opportunities to gain practical experience.</textarea
+                  <div
+                    class="upload-orb"
+                    onclick="document.getElementById('cvInput').click()"
+                  >
+                    <div class="upload-icon">
+                      <i class="bi bi-cloud-upload"></i>
+                    </div>
+                    {{ cv_display }}
+                    <p class="upload-text" id="uploadText">
+                      Click to upload or drag and drop
+                    </p>
+                    <p class="upload-hint">PDF, DOC or DOCX (MAX. 5MB)</p>
+                    <input
+                      type="file"
+                      id="cvInput"
+                      name="cv"
+                      accept=".pdf,.doc,.docx"
+                      style="display: none"
+                      onchange="
+                        document.getElementById('uploadText').textContent =
+                          this.files[0]?.name || 'Click to upload'
+                      "
+                    />
+                    <button
+                      type="button"
+                      class="btn-upload-cosmic"
+                      onclick="
+                        event.stopPropagation();
+                        document.getElementById('cvInput').click();
+                      "
                     >
-                  </div>
-                </div>
-              </section>
-
-              <div class="cosmic-divider"></div>
-
-              <!-- Education -->
-              <section class="profile-section">
-                <div class="section-title-cosmic">
-                  <i class="bi bi-mortarboard"></i>
-                  education
-                </div>
-                <div class="form-grid">
-                  <div class="form-group">
-                    <label class="form-label-cosmic">University</label>
-                    <div class="input-blob-group">
-                      <span class="input-icon"
-                        ><i class="bi bi-building"></i
-                      ></span>
-                      <input
-                        type="text"
-                        class="input-blob"
-                        value="University of Algiers"
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label-cosmic">Field of Study</label>
-                    <div class="input-blob-group">
-                      <span class="input-icon"><i class="bi bi-book"></i></span>
-                      <input
-                        type="text"
-                        class="input-blob"
-                        value="Computer Science"
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label-cosmic">Degree</label>
-                    <div class="input-blob-group">
-                      <span class="input-icon"
-                        ><i class="bi bi-award"></i
-                      ></span>
-                      <select class="input-blob">
-                        <option>Bachelor's (License)</option>
-                        <option selected>Master's</option>
-                        <option>PhD</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label-cosmic">Year</label>
-                    <div class="input-blob-group">
-                      <span class="input-icon"
-                        ><i class="bi bi-calendar"></i
-                      ></span>
-                      <select class="input-blob">
-                        <option>L1</option>
-                        <option>L2</option>
-                        <option selected>L3</option>
-                        <option>M1</option>
-                        <option>M2</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              <div class="cosmic-divider"></div>
-
-              <!-- Technical Skills - reimagined -->
-              <section class="profile-section">
-                <div class="section-title-cosmic">
-                  <i class="bi bi-code-square"></i>
-                  technical skills
-                </div>
-
-                <div class="skills-cosmic">
-                  <!-- Skills Tags -->
-                  <div class="skills-container-cosmic" id="skillsContainer">
-                    <span class="skill-tag-cosmic">
-                      React
-                      <button type="button" onclick="removeSkill('React')">
-                        <i class="bi bi-x"></i>
-                      </button>
-                    </span>
-                    <span class="skill-tag-cosmic">
-                      JavaScript
-                      <button type="button" onclick="removeSkill('JavaScript')">
-                        <i class="bi bi-x"></i>
-                      </button>
-                    </span>
-                    <span class="skill-tag-cosmic">
-                      TypeScript
-                      <button type="button" onclick="removeSkill('TypeScript')">
-                        <i class="bi bi-x"></i>
-                      </button>
-                    </span>
-                    <span class="skill-tag-cosmic">
-                      Node.js
-                      <button type="button" onclick="removeSkill('Node.js')">
-                        <i class="bi bi-x"></i>
-                      </button>
-                    </span>
-                    <span class="skill-tag-cosmic">
-                      Python
-                      <button type="button" onclick="removeSkill('Python')">
-                        <i class="bi bi-x"></i>
-                      </button>
-                    </span>
-                  </div>
-
-                  <!-- Add Skill Input -->
-                  <div class="add-skill-group">
-                    <div class="input-blob-group" style="flex: 1">
-                      <span class="input-icon"
-                        ><i class="bi bi-plus-circle"></i
-                      ></span>
-                      <input
-                        type="text"
-                        id="newSkillInput"
-                        class="input-blob"
-                        placeholder="Add a skill (e.g., React, Python)"
-                        onkeypress="handleKeyPress(event)"
-                      />
-                    </div>
-                    <button class="btn-add-cosmic" onclick="addSkill()">
-                      <i class="bi bi-plus"></i>
-                      Add
+                      Upload Resume
                     </button>
                   </div>
-                </div>
-              </section>
-
-              <div class="cosmic-divider"></div>
-
-              <!-- Portfolio & Social Links - reimagined -->
-              <section class="profile-section">
-                <div class="section-title-cosmic">
-                  <i class="bi bi-share"></i>
-                  portfolio & social
-                </div>
-
-                <div class="social-links-grid">
-                  <!-- GitHub -->
-                  <div class="social-link-card">
-                    <i class="bi bi-github"></i>
-                    <span>GitHub</span>
-                    <small>Your repositories</small>
-                    <input
-                      type="url"
-                      class="social-input"
-                      placeholder="github.com/username"
-                    />
-                  </div>
-
-                  <!-- LinkedIn -->
-                  <div class="social-link-card">
-                    <i class="bi bi-linkedin"></i>
-                    <span>LinkedIn</span>
-                    <small>Professional network</small>
-                    <input
-                      type="url"
-                      class="social-input"
-                      placeholder="linkedin.com/in/username"
-                    />
-                  </div>
-
-                  <!-- Portfolio -->
-                  <div class="social-link-card">
-                    <i class="bi bi-briefcase"></i>
-                    <span>Portfolio</span>
-                    <small>Personal website</small>
-                    <input
-                      type="url"
-                      class="social-input"
-                      placeholder="yourportfolio.com"
-                    />
-                  </div>
-                </div>
-              </section>
-
-              <div class="cosmic-divider"></div>
-
-              <!-- Resume Upload - reimagined -->
-              <section>
-                <div class="section-title-cosmic">
-                  <i class="bi bi-file-earmark-text"></i>
-                  resume/cv
-                </div>
-                <div class="upload-orb">
-                  <div class="upload-icon">
-                    <i class="bi bi-cloud-upload"></i>
-                  </div>
-                  <p class="upload-text">Click to upload or drag and drop</p>
-                  <p class="upload-hint">PDF, DOC or DOCX (MAX. 5MB)</p>
-                  <button class="btn-upload-cosmic">Upload Resume</button>
-                </div>
-              </section>
+                </section>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- JavaScript for Skills Management -->
     <script>
-      // Initial skills array
-      let skills = ["React", "JavaScript", "TypeScript", "Node.js", "Python"];
-
+      let skills = [];
+      try {
+        skills = JSON.parse(
+          document.getElementById("skillsInput").value || "[]",
+        );
+      } catch (e) {
+        skills = [];
+      }
+      function renderSkills() {
+        document.getElementById("skillsInput").value = JSON.stringify(skills);
+        document.getElementById("skillsContainer").innerHTML = skills.length
+          ? skills
+              .map(
+                (s) =>
+                  `<span class="skill-tag-cosmic">${s}<button type="button" onclick="removeSkill('${s.replace(/'/g, "\\'")}')"><i class="bi bi-x"></i></button></span>`,
+              )
+              .join("")
+          : `<span style="color:var(--text-soft);font-size:0.9rem">No skills added yet</span>`;
+      }
       function addSkill() {
         const input = document.getElementById("newSkillInput");
-        const newSkill = input.value.trim();
-
-        if (newSkill && !skills.includes(newSkill)) {
-          skills.push(newSkill);
+        const val = input.value.trim();
+        if (val && !skills.includes(val)) {
+          skills.push(val);
           renderSkills();
-          input.value = "";
         }
+        input.value = "";
+        input.focus();
       }
-
-      function removeSkill(skillToRemove) {
-        skills = skills.filter((skill) => skill !== skillToRemove);
+      function removeSkill(s) {
+        skills = skills.filter((x) => x !== s);
         renderSkills();
       }
-
-      function handleKeyPress(event) {
-        if (event.key === "Enter") {
-          addSkill();
-        }
-      }
-
-      function renderSkills() {
-        const container = document.getElementById("skillsContainer");
-        container.innerHTML = "";
-
-        skills.forEach((skill) => {
-          const skillTag = document.createElement("span");
-          skillTag.className = "skill-tag-cosmic";
-          skillTag.innerHTML = `
-          ${skill}
-          <button type="button" onclick="removeSkill('${skill}')">
-            <i class="bi bi-x"></i>
-          </button>
-        `;
-          container.appendChild(skillTag);
+      renderSkills();
+      document
+        .getElementById("profileForm")
+        .addEventListener("submit", function () {
+          const btn = document.getElementById("saveBtn");
+          btn.classList.add("loading");
+          btn.disabled = true;
         });
-      }
-
-      // Theme toggle functionality
       const toggleBtn = document.getElementById("themeToggle");
-      const body = document.body;
       const icon = toggleBtn.querySelector("i");
-
-      function setTheme(theme) {
-        if (theme === "dark") {
-          body.classList.add("dark");
-          icon.className = "bi bi-moon-fill";
-        } else {
-          body.classList.remove("dark");
-          icon.className = "bi bi-sun-fill";
-        }
-        localStorage.setItem("stagio-theme", theme);
+      function setTheme(t) {
+        document.body.classList.toggle("dark", t === "dark");
+        icon.className = t === "dark" ? "bi bi-moon-fill" : "bi bi-sun-fill";
+        localStorage.setItem("stagio-theme", t);
       }
-
-      const saved = localStorage.getItem("stagio-theme") || "light";
-      setTheme(saved);
-
-      toggleBtn.addEventListener("click", () => {
-        const isDark = body.classList.contains("dark");
-        setTheme(isDark ? "light" : "dark");
-      });
+      setTheme(localStorage.getItem("stagio-theme") || "light");
+      toggleBtn.addEventListener("click", () =>
+        setTheme(document.body.classList.contains("dark") ? "light" : "dark"),
+      );
     </script>
   </body>
 </html>
